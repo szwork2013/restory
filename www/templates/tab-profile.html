@@ -1,17 +1,35 @@
 <ion-view view-title="Profile">
-    <ion-content class="padding">
-        <h2>Welcome to Ionic</h2>
-        <p>
-            This is the Ionic starter for tabs-based apps. For other starters and ready-made templates, check out the <a href="http://market.ionic.io/starters" target="_blank">Ionic Market</a>.
-        </p>
-        <p>
-            To edit the content of each tab, edit the corresponding template file in <code>www/templates/</code>. This template is <code>www/templates/tab-dash.html</code>
-        </p>
-        <p>
-            If you need help with your app, join the Ionic Community on the <a href="http://forum.ionicframework.com" target="_blank">Ionic Forum</a>. Make sure to <a href="http://twitter.com/ionicframework" target="_blank">follow us</a> on Twitter to get important updates and announcements for Ionic developers.
-        </p>
-        <p>
-            For help sending push notifications, join the <a href="https://apps.ionic.io/signup" target="_blank">Ionic Platform</a> and check out <a href="http://docs.ionic.io/docs/push-overview" target="_blank">Ionic Push</a>. We also have other services available.
-        </p>
+    <ion-content ion-content scroll="false">
+        <ion-item style="border-width: 0;">
+            <img ng-src="{{chat.face}}" style="width: 120px; height: 120px; max-width: 100%; 
+            max-height: 100%; display:block; margin:auto; background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;" class="padding">
+            <h3 style="text-align: center">
+              {{chat.name}}
+            </h3>
+        </ion-item>
+        <ion-list class="list list-inset login-container positive padding" style="width: 80%; max-width: 80%; display:block; margin:auto;">
+            
+              <label class="item item-input item-floating-label" style="border-width: 0;">
+                <span class="input-label positive">Status</span>
+                <input type="text" placeholder="Status">
+              </label>
+              <label class="item item-input item-floating-label positive-border" style="border-left-width: 0; border-right-width: 0;">
+                <span class="input-label positive">Mood</span>
+                <input type="text" placeholder="Mood">
+              </label>
+              <label class="item item-input item-floating-label positive-border" style="border-left-width: 0; border-right-width: 0;">
+                <span class="input-label positive">Location</span>
+                <input type="text" placeholder="Location">
+              </label>
+            
+        </ion-list>
+        
+        <div class ="padding" style="padding-top: 30px">
+            <button class="button button-outline button-positive" style="width: 80%; max-width: 100%; display:block; margin:auto;" ng-click="logout()">
+                Log Out
+            </button>
+        </div>
     </ion-content>
 </ion-view>

@@ -47,4 +47,53 @@ angular.module('socialCloud.services', [])
             return null;
         }
     };
+})
+.factory('Resources', function() {
+     var resources = [{
+        id: 0,
+        name: 'Addiction',
+        numberOfResources: '14',
+        icon: 'ion-coffee'
+  }, {
+        id: 1,
+        name: 'Identity',
+        numberOfResources: '1',
+        icon: 'ion-ios-body'
+  }, {
+        id: 2,
+        name: 'Mental Health',
+        numberOfResources: '23',
+        icon: 'ion-medkit'
+  }, {
+        id: 3,
+        name: 'Relationships',
+        numberOfResources: '9',
+        icon: 'ion-ios-people'
+  }, {
+        id: 4,
+        name: 'Sexuality',
+        numberOfResources: '3',
+        icon: 'ion-transgender'
+  }, {
+        id: 5,
+        name: 'Self Management',
+        numberOfResources: '8',
+        icon: 'ion-arrow-graph-up-left'}];
+    
+    return {
+        all: function () {
+            return resources;
+        },
+        remove: function (resource) {
+            resources.splice(resources.indexOf(resource), 1);
+        },
+        get: function (resourceId) {
+            for (var i = 0; i < resources.length; i++) {
+                if (resources[i].id === parseInt(resourceId)) {
+                    return resources[i];
+                }
+            }
+            return null;
+        }
+    };
 });

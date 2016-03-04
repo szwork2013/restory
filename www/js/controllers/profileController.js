@@ -4,9 +4,12 @@ angular.module('socialCloud.controllers')
 .controller('ProfileCtrl', ProfileCtrl);
 
 // Inject dependencies
-ProfileCtrl.$inject = ['$scope'];
+ProfileCtrl.$inject = ['$scope', '$state', 'Chats'];
 
-// Now create our controller function with all necessary logic
-function ProfileCtrl($scope) {
-    // Logic here
+// Define controller
+function ProfileCtrl($scope, $state, Chats) {
+    $scope.chat = Chats.get(1);
+    $scope.logout = function () {
+        $state.go('login');
+    }
 }

@@ -4,11 +4,12 @@ angular.module('socialCloud.controllers')
 .controller('LearnCtrl', LearnCtrl);
 
 // Inject dependencies
-LearnCtrl.$inject = ['$scope'];
+LearnCtrl.$inject = ['$scope', 'Resources'];
 
 // Define controller
-function LearnCtrl($scope) {
-    $scope.settings = {
-        enableFriends: true
+function LearnCtrl($scope, Resources) {
+    $scope.resources = Resources.all();
+    $scope.remove = function (resource) {
+        Resources.remove(resource);
     };
 }
