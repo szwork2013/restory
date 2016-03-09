@@ -112,7 +112,7 @@ angular.module('socialCloud.services', [])
                 var data = snapshot.val();
                 var username = data.name || "anonymous";
                 var message = data.text;
-                callback([{name: username, message: message}]);
+                callback({name: username, message: message});
             });
         }
     };

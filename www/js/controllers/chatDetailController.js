@@ -13,7 +13,6 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages) {
     $scope.submitMessage = function(name, message) {
         Messages.push(name, message);
         $scope.messageInputModel = '';
-        $scope.$apply();
     }
     
     $scope.checkIfEnterKeyWasPressed = function($event, name, message){
@@ -25,17 +24,19 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages) {
     
     $scope.$on('$ionicView.afterEnter', function(){
         var callback = function(data) {
-        //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-        var messageElement = $("<li>");
-        var nameElement = $("<strong></strong>");
-        nameElement.text(data.name);
-        messageElement.text(data.message).prepend(nameElement);
         
+        //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+        var username = data.name || "anonymous";
+        var messageText = data.message;
+        var nameElement = $("<strong></strong>");
+        nameElement.text(username + ": ");
+        var messageElement = $("<li>");
+        messageElement.text(messageText).prepend(nameElement);
         //ADD MESSAGE
         $scope.messageList = $('#messageList');
         $scope.messageList.append(messageElement);
-        //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
-        $scope.$apply();
+        $scope.messageList[0].scrollTop = messageList[0].scrollHeight;
+       
         
     };
     Messages.getMessage(callback);
