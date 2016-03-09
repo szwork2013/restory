@@ -96,4 +96,25 @@ angular.module('socialCloud.services', [])
             return null;
         }
     };
+})
+.factory('Messages', function() {
+    var messagesRef = new Firebase("https://restorytest.firebaseio.com/");
+    
+    return {
+        push: function(name, message) {
+            messagesRef.push({name: name, text: message});
+        },   
+        
+        getMessage: function(callback) {
+            // Gets the last 10 messages
+            messagesRef.limitToLast(10).on('child_added', function (snapshot) {
+                //GET DATA
+                var data = snapshot.val();
+                var username = data.name || "anonymous";
+                var message = data.text;
+                callback([{name: username, message: message}]);
+            });
+        }
+    };
+    
 });

@@ -10,5 +10,21 @@
     <p>
       {{chat.lastText}}
     </p>
+      <ul id="messageList">
+      <li>FirstName: first message on list.</li>
+      </ul>
   </ion-content>
+    
+    <ion-footer-bar class="padding" style="height:80px">
+    <div class="item item-input" style="width: 100%">
+        <label class="item-input-wrapper">
+          <input type="text" id='messageInput' placeholder="Write a message..." name="messageInput" ng-model="messageInputModel" ng-keypress="checkIfEnterKeyWasPressed($event, 'testuser', messageInputModel)">
+        </label>
+        <button class="button button-small" ng-click="submitMessage('button', messageInputModel)">
+          Submit
+        </button>
+      </div>
+    </ion-footer-bar>
+    
+    
 </ion-view>

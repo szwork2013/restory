@@ -16,7 +16,7 @@
 
 .login-logo {
     background-image: url('../img/logo.png');
-    background-size: 'cover';
+    background-size: '100%';
 }
 
 .center {
