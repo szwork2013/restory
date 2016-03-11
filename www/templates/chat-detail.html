@@ -16,9 +16,9 @@
     <ion-footer-bar class="padding" style="height:80px">
     <div class="item item-input" style="width: 100%">
         <label class="item-input-wrapper">
-          <input type="text" id='messageInput' placeholder="Write a message..." name="messageInput" ng-model="messageInputModel" ng-keypress="checkIfEnterKeyWasPressed($event, 'testuser', messageInputModel)">
+          <input type="text" id='messageInput' placeholder="Write a message..." name="messageInput" ng-model="messageInputModel" ng-keypress="checkIfEnterKeyWasPressed($event, messageInputModel)">
         </label>
-        <button class="button button-small" ng-click="submitMessage('button', messageInputModel)">
+        <button class="button button-small" ng-click="submitMessage(messageInputModel)">
           Submit
         </button>
       </div>

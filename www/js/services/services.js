@@ -98,7 +98,7 @@ angular.module('socialCloud.services', [])
     };
 })
 .factory('Messages', function() {
-    var messagesRef = new Firebase("https://restorytest.firebaseio.com/");
+    var messagesRef = new Firebase("https://restorytest.firebaseio.com/messages/");
     
     return {
         push: function(name, message) {
@@ -114,6 +114,50 @@ angular.module('socialCloud.services', [])
                 var message = data.text;
                 callback({name: username, message: message});
             });
+        }
+    };
+    
+})
+.factory('Users', function() {
+    var ref = new Firebase("https://restorytest.firebaseio.com/");
+    var savedUsername;
+    var isNewUser = true; //set this to false after testing
+    ref.onAuth(function(authData) {
+        if (authData && isNewUser) {
+            // save the user's profile into the database so we can list users,
+            // use them in Security and Firebase Rules, and show profiles
+            ref.child("users").child(authData.auth.data.username).push({
+                uid: authData.uid,
+                provider: authData.provider,
+                isModerator: authData.auth.data.isModerator
+            });
+        }
+    });
+
+    
+    return {
+        createUser: function(username, password, callback) { //where to add username unique logic?
+            
+        var tokenGenerator = new FirebaseTokenGenerator("POYzSW2CUN7boT9NOxV2KuHiDdscHnZK68s7O60F");
+            var userData = {username: username, password: password, "isModerator": true};
+            var authToken = tokenGenerator.createToken({ "uid": device.uuid, data: userData});
+
+            ref.authWithCustomToken(authToken, function(error, userData) {
+                savedUsername = userData.auth.data.username;
+                callback(error, userData);  
+            });
+        },
+        
+        logOut: function() {
+            ref.unauth();
+        },
+        
+        registerNewUser: function(isRegisterUser) {
+            isNewUser = isRegisterUser;
+        },
+        
+        getUsername: function() {
+            return savedUsername;
         }
     };
     

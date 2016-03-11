@@ -4,12 +4,18 @@ angular.module('socialCloud.controllers')
 .controller('LoginCtrl', LoginCtrl);
 
 // Inject dependencies
-LoginCtrl.$inject = ['$scope', '$state'];
+LoginCtrl.$inject = ['$scope', '$state', 'Users'];
 
-// Now create our controller function with all necessary logic
-function LoginCtrl($scope, $state) {
-    // Logic here
-    $scope.login = function () {
-        $state.go('tab.chats');
-    }
+function LoginCtrl($scope, $state, Users) {
+    Users.logOut();
+    $scope.login = function(username, password) {
+        Users.createUser(username, password, function (error, userData) {
+        if (error) {
+            console.log("Error creating user:", error);
+        } else {
+            $state.go('tab.chats');
+        }
+    })
+    };
+    
 }

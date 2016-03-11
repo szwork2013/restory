@@ -8,13 +8,13 @@
             <ion-list class="list list-inset login-container">
                 <label class="item item-input item-floating-label" style="border-width: 0;">
                 <span class="input-label" style="color: white">Username</span>
-                <input type="text" placeholder="Username">
+                <input type="text" ng-model="username" placeholder="Username">
               </label>
               <label class="item item-input item-floating-label" style="border-left-width: 0; border-right-width: 0; border-color: white;">
                 <span class="input-label" style="color: white">Password</span>
-                <input type="text" placeholder="Password">
+                <input type="text" ng-model="password" placeholder="Password">
               </label>
-                <button class="button button-block" ng-click="login()" style="opacity: 0.7; border: positive;">Log In</button>
+                <button class="button button-block" ng-click="login(username,password)" style="opacity: 0.7; border: positive;">Log In</button>
             </ion-list>
         </div>
     </ion-content>

@@ -4,25 +4,24 @@ angular.module('socialCloud.controllers')
 .controller('ChatDetailCtrl', ChatDetailCtrl);
 
 // Inject dependencies
-ChatDetailCtrl.$inject = ['$scope', '$stateParams', 'Chats', 'Messages'];
+ChatDetailCtrl.$inject = ['$scope', '$stateParams', 'Chats', 'Messages', 'Users'];
 
 // Define controller
-function ChatDetailCtrl($scope, $stateParams, Chats, Messages) {
+function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
     $scope.chat = Chats.get($stateParams.chatId);
-    
-    $scope.submitMessage = function(name, message) {
-        Messages.push(name, message);
+    $scope.submitMessage = function(message) {
+        Messages.push(Users.getUsername(), message);
         $scope.messageInputModel = '';
     }
     
-    $scope.checkIfEnterKeyWasPressed = function($event, name, message){
+    $scope.checkIfEnterKeyWasPressed = function($event, message) {
         var keyCode = $event.which || $event.keyCode;
         if (keyCode === 13) {
-           $scope.submitMessage(name, message); 
+           $scope.submitMessage(message); 
         }
     };
     
-    $scope.$on('$ionicView.afterEnter', function(){
+    $scope.$on('$ionicView.beforeEnter', function(){
         var callback = function(data) {
         
         //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
@@ -35,9 +34,7 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages) {
         //ADD MESSAGE
         $scope.messageList = $('#messageList');
         $scope.messageList.append(messageElement);
-        $scope.messageList[0].scrollTop = messageList[0].scrollHeight;
-       
-        
+        //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
     };
     Messages.getMessage(callback);
     });
