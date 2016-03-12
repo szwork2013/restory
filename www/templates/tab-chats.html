@@ -11,17 +11,32 @@
         </div>
     </ion-nav-buttons>
     <ion-content>
-        <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="chat in chats " type="item-text-wrap " href="#/tab/chats/{{chat.id}} ">
-                <img ng-src="{{chat.face}} ">
-                <h2>{{chat.name}}</h2>
-                <p>{{chat.lastText}}</p>
+        <div id="groupChatList" class="list">
+        <div class="item item-divider">
+            Social Support
+        </div>
+        
+        </div>
+        <!-- <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right " ng-click="getChatDetail({{chat.groupName}})">
+                <img ng-src="{{chat.groupName}} ">
                 <i class="icon ion-chevron-right icon-accessory "></i>
 
                 <ion-option-button class="button-assertive " ng-click="remove(chat) ">
                     Delete
                 </ion-option-button>
             </ion-item>
-        </ion-list>
+        </ion-list> -->
     </ion-content>
+    
+    <ion-footer-bar class="padding" style="height:80px">
+    <div class="item item-input" style="width: 100%">
+        <label class="item-input-wrapper">
+          <input type="text" id='newGroupChatInput' placeholder="create chat" name="newGroupChatInput" ng-model="newChatInputModel">
+        </label>
+        <button class="button button-small" ng-click="createGroup(newChatInputModel)">
+          New Chat
+        </button>
+      </div>
+    </ion-footer-bar>
 </ion-view>

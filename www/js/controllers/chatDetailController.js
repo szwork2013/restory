@@ -8,9 +8,8 @@ ChatDetailCtrl.$inject = ['$scope', '$stateParams', 'Chats', 'Messages', 'Users'
 
 // Define controller
 function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
-    $scope.chat = Chats.get($stateParams.chatId);
     $scope.submitMessage = function(message) {
-        Messages.push(Users.getUsername(), message);
+        Messages.push(Users.getUsername(), message, Chats.getCurrentGroupChat());
         $scope.messageInputModel = '';
     }
     
@@ -21,7 +20,7 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
         }
     };
     
-    $scope.$on('$ionicView.beforeEnter', function(){
+    $scope.$on('$ionicView.loaded', function(){
         var callback = function(data) {
         
         //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
@@ -36,7 +35,7 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
         $scope.messageList.append(messageElement);
         //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
     };
-    Messages.getMessage(callback);
+    Messages.getMessage(callback, Chats.getCurrentGroupChat());
     });
     
 }
