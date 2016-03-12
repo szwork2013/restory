@@ -98,7 +98,7 @@ angular.module('socialCloud.services', [])
     };
 })
 .factory('Messages', function() {
-    var messagesRef = new Firebase("https://restorytest.firebaseio.com/messages/");
+    var messagesRef = new Firebase("https://restory.firebaseio.com/messages/");
     
     return {
         push: function(name, message) {
@@ -119,17 +119,16 @@ angular.module('socialCloud.services', [])
     
 })
 .factory('Users', function() {
-    var ref = new Firebase("https://restorytest.firebaseio.com/");
+    var ref = new Firebase("https://restory.firebaseio.com/");
     var savedUsername;
     var isNewUser = true; //set this to false after testing
     ref.onAuth(function(authData) {
         if (authData && isNewUser) {
             // save the user's profile into the database so we can list users,
             // use them in Security and Firebase Rules, and show profiles
-            ref.child("users").child(authData.auth.data.username).push({
+            ref.child("users").child(authData.auth.data.username).set({
                 uid: authData.uid,
-                provider: authData.provider,
-                isModerator: authData.auth.data.isModerator
+                accountType: "client"
             });
         }
     });
@@ -138,7 +137,7 @@ angular.module('socialCloud.services', [])
     return {
         createUser: function(username, password, callback) { //where to add username unique logic?
             
-        var tokenGenerator = new FirebaseTokenGenerator("POYzSW2CUN7boT9NOxV2KuHiDdscHnZK68s7O60F");
+        var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
             var userData = {username: username, password: password, "isModerator": true};
             var authToken = tokenGenerator.createToken({ "uid": device.uuid, data: userData});
 
