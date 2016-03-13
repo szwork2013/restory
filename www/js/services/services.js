@@ -12,6 +12,20 @@ angular.module('socialCloud.services', [])
         return p1.toLowerCase();        
         });
     };
+    
+    var addUserToGroupCallBack =  function(username, groupName, callback) { //check if permission denied or already part of group, 
+        //Save group id in user data
+        var messageGroupName = {};
+        messageGroupName[groupName] = true;
+        ref.child("users").child(username).child("groups").push(messageGroupName);
+
+        //add username under group in group list
+        var groupId = groupName.toCamelCase();
+        var memberName = {};
+        memberName[username] = true;
+        ref.child("groupsList").child(groupId).child("members").push(memberName);
+        callback();
+    }
 
     return {
         getChats: function (callback) { //for now gets last 10 group chats in the system
@@ -29,7 +43,7 @@ angular.module('socialCloud.services', [])
         createGroup: function(username, groupName) {
             var messageGroupName = {};
             messageGroupName[groupName] = true;
-            ref.child("users").child(username).child("groups").set(messageGroupName);
+            ref.child("users").child(username).child("groups").push(messageGroupName);
             
             if(false) { //check if group name already exists
             
@@ -43,24 +57,27 @@ angular.module('socialCloud.services', [])
             
         },
         
-        joinGroup: function(username, groupName) {
-            
-            
-            if (false) { //check if permission denied or already part of group, 
-                
-            } else {
-                //Save group id in user data
-                var messageGroupName = {};
-                messageGroupName[groupName] = true;
-                ref.child("users").child(username).child("groups").push(messageGroupName);
-                
-                //add username under group in group list
-                var groupId = groupName.toCamelCase();
-                var memberName = {};
-                memberName[username] = true;
-                ref.child("groupsList").child(groupId).child("members").push(memberName);
-            }
-           
+        joinGroup: function(username, groupName, goChatDetailPage) {
+            ref.child("users").child(username).child("groups").once("value", function(snapshot) {
+                if(snapshot.val() == null) { //that means user has never joined any group yet
+                    addUserToGroupCallBack(username, groupName, goChatDetailPage);
+                    return;
+                }
+                var snapShotData = Object.keys(snapshot.val());
+                var dataLength = snapShotData.length;
+                var count = 1;
+                snapshot.forEach(function(childSnapShot) {
+                    var GroupNameJson = childSnapShot.val();
+                    var groupIdKey = Object.keys(GroupNameJson)[0];
+                    if ( groupIdKey.localeCompare(groupName) == 0 ) {
+                        goChatDetailPage();
+                        return true;
+                    } else if(count == dataLength) {
+                        addUserToGroupCallBack(username, groupName, goChatDetailPage);
+                    }
+                    count++;
+                });
+            });
         },
         
         removeGroup: function(groupName) {

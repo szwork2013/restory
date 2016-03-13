@@ -20,7 +20,7 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
         }
     };
     
-    $scope.$on('$ionicView.beforeEnter', function() {
+    $scope.$on('$ionicView.loaded', function() {
         
         
     var callback = function(data) {
@@ -39,7 +39,7 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
     Messages.getMessage(callback, Chats.getCurrentGroupChat());        
     });
     
-    $scope.$on('$ionicView.afterLeave', function() {
+    $scope.$on('$ionicView.unloaded', function() {
         Messages.unregisterMessageEvent(Chats.getCurrentGroupChat());
     });
     

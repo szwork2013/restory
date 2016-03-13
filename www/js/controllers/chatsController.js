@@ -19,12 +19,14 @@ function ChatsCtrl($scope, $state, $stateParams, Chats, Users) {
     }
     
     $scope.joinGroup = function(groupName) {
-        Chats.joinGroup(Users.getUsername(), groupName);
+        var goChatDetailPage = function() {
+            $state.go('tab.chat-detail');
+        }
+        Chats.joinGroup(Users.getUsername(), groupName, goChatDetailPage);
         Chats.setCurrentGroupChat(groupName);
-        $state.go('tab.chat-detail');
     }
     
-    $scope.$on('$ionicView.beforeEnter', function() {
+    $scope.$on('$ionicView.loaded', function() {
         var callback = function(data) {
             //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
             var groupChat = $("<a>");
@@ -41,7 +43,7 @@ function ChatsCtrl($scope, $state, $stateParams, Chats, Users) {
         Chats.getChats(callback);
     });
     
-    $scope.$on('$ionicView.afterLeave', function() {
+    $scope.$on('$ionicView.unloaded', function() {
         Chats.unregisterChatsEvent();
     })
 }
