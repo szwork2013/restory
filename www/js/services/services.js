@@ -2,7 +2,9 @@ angular.module('socialCloud.services', [])
 
 .factory('Chats', function () {
     var ref = new Firebase("https://restory.firebaseio.com/");
+    var groupListRef = new Firebase("https://restory.firebaseio.com/groupsList");
     var savedGroupChat;
+    var childCallBackRef;
     //put this function somewhere else?
     String.prototype.toCamelCase = function() {
     return this.replace(/^([A-Z])|\s(\w)/g, function(match, p1, p2, offset) {
@@ -13,12 +15,15 @@ angular.module('socialCloud.services', [])
 
     return {
         getChats: function (callback) { //for now gets last 10 group chats in the system
-            var groupListRef = new Firebase("https://restory.firebaseio.com/groupsList");
+            
             // Retrieve new posts as they are added to our database
-            groupListRef.limitToLast(10).on("child_added", function(snapshot, prevChildKey) {
+            childCallBackRef = groupListRef.limitToLast(10).on("child_added", function(snapshot, prevChildKey) {
                 var groupChats = snapshot.val();
                 callback(groupChats);
             });
+        },
+        unregisterChatsEvent: function() {
+            groupListRef.off('child_added', childCallBackRef);
         },
         
         createGroup: function(username, groupName) {
@@ -122,6 +127,7 @@ angular.module('socialCloud.services', [])
 })
 .factory('Messages', function() {
     var messagesRef = new Firebase("https://restory.firebaseio.com/messages/");
+    var childCallBackRef;
     //put this function somewhere else?
     String.prototype.toCamelCase = function() {
         return this.replace(/^([A-Z])|\s(\w)/g, function(match, p1, p2, offset) {
@@ -132,17 +138,27 @@ angular.module('socialCloud.services', [])
     return {
         push: function(name, message, groupName) {
             messagesRef.child(groupName.toCamelCase()).push({name: name, text: message});
-        },   
+        },
+        
+        isCallBackSet: function () {
+            return isCallBackSet;
+        },
         
         getMessage: function(callback, groupName) {
             // Gets the last 10 messages
-            messagesRef.child(groupName.toCamelCase()).limitToLast(10).on('child_added', function (snapshot) {
+            childCallBackRef = messagesRef.child(groupName.toCamelCase()).limitToLast(10).on('child_added', function (snapshot) {
                 //GET DATA
                 var data = snapshot.val();
                 var username = data.name || "anonymous";
                 var message = data.text;
+                
+                
                 callback({name: username, message: message});
             });
+        },
+        
+        unregisterMessageEvent: function(groupName) {
+            messagesRef.child(groupName.toCamelCase()).off('child_added', childCallBackRef);
         }
     };
     
@@ -168,7 +184,7 @@ angular.module('socialCloud.services', [])
             
         var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
             var userData = {username: username, password: password, "accountType": "client"};
-            var authToken = tokenGenerator.createToken({ "uid": device.uuid, data: userData});
+            var authToken = tokenGenerator.createToken({ "uid": "device.uuid", data: userData});
 
             ref.authWithCustomToken(authToken, function(error, userData) {
                 savedUsername = userData.auth.data.username;

@@ -20,9 +20,10 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
         }
     };
     
-    $scope.$on('$ionicView.loaded', function(){
-        var callback = function(data) {
+    $scope.$on('$ionicView.beforeEnter', function() {
         
+        
+    var callback = function(data) {
         //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
         var username = data.name || "anonymous";
         var messageText = data.message;
@@ -35,7 +36,11 @@ function ChatDetailCtrl($scope, $stateParams, Chats, Messages, Users) {
         $scope.messageList.append(messageElement);
         //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
     };
-    Messages.getMessage(callback, Chats.getCurrentGroupChat());
+    Messages.getMessage(callback, Chats.getCurrentGroupChat());        
+    });
+    
+    $scope.$on('$ionicView.afterLeave', function() {
+        Messages.unregisterMessageEvent(Chats.getCurrentGroupChat());
     });
     
 }

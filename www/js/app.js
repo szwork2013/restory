@@ -57,6 +57,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
     })
 
     .state('tab.chats', {
+            cache: false,
             url: '/chats',
             views: {
                 'tab-chats': {

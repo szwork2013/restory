@@ -24,21 +24,24 @@ function ChatsCtrl($scope, $state, $stateParams, Chats, Users) {
         $state.go('tab.chat-detail');
     }
     
-    $scope.$on('$ionicView.loaded', function() {
+    $scope.$on('$ionicView.beforeEnter', function() {
         var callback = function(data) {
-        
-        //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-        var groupChat = $("<a>");
-        groupChat.text(data.name);
-            groupChat.click(function() {
-                $scope.joinGroup($( this ).text());
-            });
-            groupChat.addClass("item");
-        //ADD MESSAGE
-        $scope.groupChatList = $('#groupChatList');
-        $scope.groupChatList.append(groupChat);
-        //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
+            //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+            var groupChat = $("<a>");
+            groupChat.text(data.name);
+                groupChat.click(function() {
+                    $scope.joinGroup($( this ).text());
+                });
+                groupChat.addClass("item");
+            //ADD MESSAGE
+            $scope.groupChatList = $('#groupChatList');
+            $scope.groupChatList.append(groupChat);
+            //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
         };
         Chats.getChats(callback);
     });
+    
+    $scope.$on('$ionicView.afterLeave', function() {
+        Chats.unregisterChatsEvent();
+    })
 }
