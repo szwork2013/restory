@@ -201,7 +201,7 @@ angular.module('socialCloud.services', [])
             
         var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
             var userData = {username: username, password: password, "accountType": "client"};
-            var authToken = tokenGenerator.createToken({ "uid": "device.uuid", data: userData});
+            var authToken = tokenGenerator.createToken({ "uid": device.uuid, data: userData});
 
             ref.authWithCustomToken(authToken, function(error, userData) {
                 savedUsername = userData.auth.data.username;
