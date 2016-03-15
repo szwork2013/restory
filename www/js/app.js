@@ -67,7 +67,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
             }
         })
         .state('tab.chat-detail', {
-            url: '/chats/:chatId',
+            url: '/chats/:groupName',
             views: {
                 'tab-chats': {
                     templateUrl: 'templates/chat-detail.html',
@@ -84,6 +84,12 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
                 controller: 'LearnCtrl'
             }
         }
+    })
+    
+    .state('register', {
+        url: '/register',
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl'
     });
 
     // if none of the above states are matched, use this as the fallback
