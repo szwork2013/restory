@@ -183,7 +183,7 @@ angular.module('socialCloud.services', [])
 .factory('Users', function() {
     var ref = new Firebase("https://restory.firebaseio.com/");
     var savedUsername;
-    var isNewUser = false; //set this to false after testing
+    var isNewUser = false;
     ref.onAuth(function(authData) {
         if (authData && isNewUser) {
             // save the user's profile into the database so we can list users,
@@ -198,9 +198,9 @@ angular.module('socialCloud.services', [])
     
     return {
         
-        isUniqueUser: function(username, callback) {
+        isUserRegistered: function(username, callback) {
             ref.child("users").once("value", function(snapshot) {
-              callback(!snapshot.child(username).exists());
+              callback(snapshot.child(username).exists());
             });
         },
         createUser: function(username, password, callback) {
@@ -221,7 +221,7 @@ angular.module('socialCloud.services', [])
         },
         login: function(username, password, callback) { //duplicate code
             isNewUser = false;
-        var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
+            var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
             var userData = {username: username, password: password, "accountType": "client"};
             var authToken = tokenGenerator.createToken({ "uid": "device.uuid", data: userData});
 

@@ -31,3 +31,7 @@
 .item-spacing {
     margin: 10px auto;
 }
+.inline-error {
+    color: red;
+    font-size: 100%;
+}
