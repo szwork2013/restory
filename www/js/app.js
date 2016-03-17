@@ -67,7 +67,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
             }
         })
         .state('tab.chat-detail', {
-            url: '/chats/:groupName',
+            url: '/chats/:chatName',
             views: {
                 'tab-chats': {
                     templateUrl: 'templates/chat-detail.html',

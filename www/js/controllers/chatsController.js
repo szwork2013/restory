@@ -21,7 +21,7 @@ function ChatsCtrl($scope, $state, $stateParams, $ionicScrollDelegate, Chats, Us
     
     $scope.joinGroup = function(groupName) {
         var goChatDetailPage = function() {
-            $state.go('tab.chat-detail');
+            $state.go('tab.chat-detail', {chatName:groupName});
         }
         Chats.joinGroup(Users.getUsername(), groupName, goChatDetailPage);
         Chats.setCurrentGroupChat(groupName);
