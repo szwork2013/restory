@@ -4,10 +4,10 @@ angular.module('socialCloud.controllers')
 .controller('ChatsCtrl', ChatsCtrl);
 
 // Inject dependencies
-ChatsCtrl.$inject = ['$scope', '$state', '$stateParams', 'Chats', 'Users'];
+ChatsCtrl.$inject = ['$scope', '$state', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Users'];
 
 // Define controller
-function ChatsCtrl($scope, $state, $stateParams, Chats, Users) {
+function ChatsCtrl($scope, $state, $stateParams, $ionicScrollDelegate, Chats, Users) {
     $scope.remove = function (chat) {
         Chats.removeGroup(chat);
     };
@@ -16,6 +16,7 @@ function ChatsCtrl($scope, $state, $stateParams, Chats, Users) {
         var name = groupName || "No name";
         Chats.createGroup(Users.getUsername(), name);
         $scope.newChatInputModel = '';
+        $ionicScrollDelegate.scrollBottom();
     }
     
     $scope.joinGroup = function(groupName) {
@@ -38,12 +39,13 @@ function ChatsCtrl($scope, $state, $stateParams, Chats, Users) {
             //ADD MESSAGE
             $scope.groupChatList = $('#groupChatList');
             $scope.groupChatList.append(groupChat);
-            //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
+            $ionicScrollDelegate.resize();
         };
         Chats.getChats(callback);
     });
     
     $scope.$on('$ionicView.unloaded', function() {
         Chats.unregisterChatsEvent();
-    })
+    });
+    
 }

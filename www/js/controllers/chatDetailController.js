@@ -4,10 +4,10 @@ angular.module('socialCloud.controllers')
 .controller('ChatDetailCtrl', ChatDetailCtrl);
 
 // Inject dependencies
-ChatDetailCtrl.$inject = ['$scope', '$stateParams', '$ionicLoading', 'Chats', 'Messages', 'Users'];
+ChatDetailCtrl.$inject = ['$scope', '$stateParams','$ionicScrollDelegate', '$ionicLoading', 'Chats', 'Messages', 'Users'];
 
 // Define controller
-function ChatDetailCtrl($scope, $stateParams, $ionicLoading, Chats, Messages, Users) {
+function ChatDetailCtrl($scope, $stateParams, $ionicScrollDelegate, $ionicLoading, Chats, Messages, Users) {
     $ionicLoading.show({
             template: 'Loading messages...',
             duration: 800
@@ -37,7 +37,8 @@ function ChatDetailCtrl($scope, $stateParams, $ionicLoading, Chats, Messages, Us
             //ADD MESSAGE
             $scope.messageList = $('#messageList');
             $scope.messageList.append(messageElement);
-            //$scope.messageList[0].scrollTop = messageList[0].scrollHeight;
+            $ionicScrollDelegate.scrollBottom();
+            //$ionicScrollDelegate.resize();
         };
         Messages.getMessage(callback, Chats.getCurrentGroupChat());        
     });

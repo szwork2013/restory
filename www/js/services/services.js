@@ -28,10 +28,10 @@ angular.module('socialCloud.services', [])
     }
 
     return {
-        getChats: function (callback) { //for now gets last 10 group chats in the system
+        getChats: function (callback) { //for now gets last 20 group chats in the system
             
             // Retrieve new posts as they are added to our database
-            childCallBackRef = groupListRef.limitToLast(10).on("child_added", function(snapshot, prevChildKey) {
+            childCallBackRef = groupListRef.limitToLast(20).on("child_added", function(snapshot, prevChildKey) {
                 var groupChats = snapshot.val();
                 callback(groupChats);
             });
@@ -162,8 +162,8 @@ angular.module('socialCloud.services', [])
         },
         
         getMessage: function(callback, groupName) {
-            // Gets the last 10 messages
-            childCallBackRef = messagesRef.child(groupName.toCamelCase()).limitToLast(10).on('child_added', function (snapshot) {
+            // Gets the last 20 messages
+            childCallBackRef = messagesRef.child(groupName.toCamelCase()).limitToLast(40).on('child_added', function (snapshot) {
                 //GET DATA
                 var data = snapshot.val();
                 var username = data.name || "anonymous";
@@ -219,7 +219,7 @@ angular.module('socialCloud.services', [])
             ref.off();
             ref.unauth();
         },
-        login: function(username, password, callback) { //duplicate code
+        login: function(username, password, callback) { //check if correct password
             isNewUser = false;
             var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
             var userData = {username: username, password: password, "accountType": "client"};

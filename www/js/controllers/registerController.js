@@ -30,7 +30,6 @@ function RegisterCtrl($scope, $state, Users) {
         } else {
             $scope.confirmPasswordError = "";
         }
-        //$scope.$apply();
         return isValid;
     };
     
@@ -39,7 +38,7 @@ function RegisterCtrl($scope, $state, Users) {
             if (validateInput(username, password, confirmPassword)) {
                 Users.isUserRegistered(username, function(isUserRegistered) {
                     if(!isUserRegistered) {
-                        Users.createUser(username, password, function (error, userData) {
+                        Users.createUser(username.toLowerCase(), password, function (error, userData) {
                             if (error) {
                                 console.log("Error creating user:", error);
                             } else {
