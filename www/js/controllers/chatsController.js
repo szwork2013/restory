@@ -14,7 +14,7 @@ function ChatsCtrl($scope, $state, $stateParams, $ionicScrollDelegate, Chats, Us
     
     $scope.createGroup =  function (groupName) {
         var name = groupName || "No name";
-        Chats.createGroup(Users.getUsername(), name);
+        Chats.createGroup(Users.getCurrentUser().username, name);
         $scope.newChatInputModel = '';
         $ionicScrollDelegate.scrollBottom();
     }
@@ -23,7 +23,7 @@ function ChatsCtrl($scope, $state, $stateParams, $ionicScrollDelegate, Chats, Us
         var goChatDetailPage = function() {
             $state.go('tab.chat-detail', {chatName:groupName});
         }
-        Chats.joinGroup(Users.getUsername(), groupName, goChatDetailPage);
+        Chats.joinGroup(Users.getCurrentUser().username, groupName, goChatDetailPage);
         Chats.setCurrentGroupChat(groupName);
     }
     

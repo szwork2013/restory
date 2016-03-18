@@ -182,7 +182,7 @@ angular.module('socialCloud.services', [])
 })
 .factory('Users', function() {
     var ref = new Firebase("https://restory.firebaseio.com/");
-    var savedUsername;
+    var currentUser;
     var isNewUser = false;
     ref.onAuth(function(authData) {
         if (authData && isNewUser) {
@@ -210,7 +210,7 @@ angular.module('socialCloud.services', [])
             var authToken = tokenGenerator.createToken({ "uid": "device.uuid", data: userData});
 
             ref.authWithCustomToken(authToken, function(error, userData) {
-                savedUsername = userData.auth.data.username;
+                currentUser = userData.auth.data;
                 callback(error, userData);  
             });
         },
@@ -226,17 +226,13 @@ angular.module('socialCloud.services', [])
             var authToken = tokenGenerator.createToken({ "uid": "device.uuid", data: userData});
 
             ref.authWithCustomToken(authToken, function(error, userData) {
-                savedUsername = userData.auth.data.username;
+                currentUser = userData.auth.data;
                 callback(error, userData);  
             });
         },
         
-        registerNewUser: function(isRegisterUser) {
-            isNewUser = isRegisterUser;
-        },
-        
-        getUsername: function() {
-            return savedUsername;
+        getCurrentUser: function() {
+            return currentUser;
         }
     };
     

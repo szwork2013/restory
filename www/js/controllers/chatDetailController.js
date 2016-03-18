@@ -15,7 +15,7 @@ function ChatDetailCtrl($scope, $stateParams, $ionicScrollDelegate, $ionicLoadin
     });
     
     $scope.submitMessage = function(message) {
-        Messages.push(Users.getUsername(), message, Chats.getCurrentGroupChat());
+        Messages.push(Users.getCurrentUser().username, message, Chats.getCurrentGroupChat());
         $scope.messageInputModel = '';
     }
     
