@@ -10,6 +10,17 @@ function RegisterCtrl($scope, $state, Users) {
     
     var validateInput = function (username, password, confirmPassword) {
         var isValid = true;
+        if (username) {
+            if (username.search("^[a-zA-Z0-9]*$")) {
+                $scope.usernameError = "Username has invalid characters";
+                isValid = false;
+            } else {
+                 $scope.usernameError = "";
+            }
+        } else {
+            $scope.usernameError = "Enter username";
+            isValid = false;
+        }
         if (!password) {
                 $scope.passwordError = "Enter password";
                 isValid = false;

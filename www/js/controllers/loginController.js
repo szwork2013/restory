@@ -8,14 +8,6 @@ LoginCtrl.$inject = ['$scope', '$state','$ionicLoading', 'Users'];
 
 function LoginCtrl($scope, $state, $ionicLoading, Users) {
     
-   /* var clearData = function() {
-        $scope.usernameError = "";
-        $scope.passwordError = "";
-        $scope.usernameModel = "";
-        $scope.passwordModel = "";
-        $scope.$apply();
-    }*/
-    
     $scope.login = function(username, password) {
         
         Users.isUserRegistered(username.toLowerCase(),  function (isUserRegistered) {
@@ -29,10 +21,6 @@ function LoginCtrl($scope, $state, $ionicLoading, Users) {
                                 template: 'Logging In...',
                                 duration: 800
                         });
-                        $scope.usernameError = "";
-                        $scope.passwordError = "";
-                        $scope.usernameModel = "";
-                        $scope.passwordModel = "";
                         $state.go('tab.chats');
                     }
                 });
@@ -44,10 +32,6 @@ function LoginCtrl($scope, $state, $ionicLoading, Users) {
     };
     
     $scope.goRegisterPage = function() {
-        $scope.usernameError = "";
-        $scope.passwordError = "";
-        $scope.usernameModel = "";
-        $scope.passwordModel = "";
         $state.go('register');
     }
     

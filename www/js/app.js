@@ -39,6 +39,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
     })
 
     .state('login', {
+        cache: "false",
         url: '/login',
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
@@ -87,6 +88,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
     })
     
     .state('register', {
+        cache: "false",
         url: '/register',
         templateUrl: 'templates/register.html',
         controller: 'RegisterCtrl'
