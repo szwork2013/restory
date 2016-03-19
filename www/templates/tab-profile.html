@@ -13,15 +13,15 @@
             
               <label class="item item-input item-floating-label" style="border-width: 0;">
                 <span class="input-label positive">Status</span>
-                <input type="text" placeholder="Status">
+                <input type="text" placeholder="Status" ng-model="statusModel" ng-blur="updateStatus(statusModel)">
               </label>
               <label class="item item-input item-floating-label positive-border" style="border-left-width: 0; border-right-width: 0;">
                 <span class="input-label positive">Mood</span>
-                <input type="text" placeholder="Mood">
+                <input type="text" placeholder="Mood" ng-model="moodModel" ng-blur="updateMood(moodModel)">
               </label>
               <label class="item item-input item-floating-label positive-border" style="border-left-width: 0; border-right-width: 0;">
                 <span class="input-label positive">Location</span>
-                <input type="text" placeholder="Location">
+                <input type="text" placeholder="Location" ng-location="locationModel" ng-blur="updateLocation(locationModel)">
               </label>
             
         </ion-list>

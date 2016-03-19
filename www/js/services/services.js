@@ -17,13 +17,13 @@ angular.module('socialCloud.services', [])
         //Save group id in user data
         var messageGroupName = {};
         messageGroupName[groupName] = true;
-        ref.child("users").child(username).child("groups").push(messageGroupName);
+        ref.child("users").child(username).child("groups").update(messageGroupName);
 
         //add username under group in group list
         var groupId = groupName.toCamelCase();
         var memberName = {};
         memberName[username] = true;
-        ref.child("groupsList").child(groupId).child("members").push(memberName);
+        ref.child("groupsList").child(groupId).child("members").update(memberName);
         callback();
     }
 
@@ -43,7 +43,7 @@ angular.module('socialCloud.services', [])
         createGroup: function(username, groupName) {
             var messageGroupName = {};
             messageGroupName[groupName] = true;
-            ref.child("users").child(username).child("groups").push(messageGroupName);
+            ref.child("users").child(username).child("groups").update(messageGroupName);
             
             if(false) { //check if group name already exists
             
@@ -52,31 +52,18 @@ angular.module('socialCloud.services', [])
                 ref.child("groupsList").child(groupId).set({name: groupName});
                 var usernameJson = {};
                 usernameJson[username] = true;
-                ref.child("groupsList").child(groupId).child("members").push(usernameJson);
+                ref.child("groupsList").child(groupId).child("members").update(usernameJson);
             }
             
         },
         
         joinGroup: function(username, groupName, goChatDetailPage) {
             ref.child("users").child(username).child("groups").once("value", function(snapshot) {
-                if(snapshot.val() == null) { //that means user has never joined any group yet
+                if(snapshot.val() != null && snapshot.child(groupName).exists()) { 
+                    goChatDetailPage();
+                } else { //that means user has never joined any group yet, add to chat
                     addUserToGroupCallBack(username, groupName, goChatDetailPage);
-                    return;
                 }
-                var snapShotData = Object.keys(snapshot.val());
-                var dataLength = snapShotData.length;
-                var count = 1;
-                snapshot.forEach(function(childSnapShot) {
-                    var GroupNameJson = childSnapShot.val();
-                    var groupIdKey = Object.keys(GroupNameJson)[0];
-                    if ( groupIdKey.localeCompare(groupName) == 0 ) {
-                        goChatDetailPage();
-                        return true;
-                    } else if(count == dataLength) {
-                        addUserToGroupCallBack(username, groupName, goChatDetailPage);
-                    }
-                    count++;
-                });
             });
         },
         
@@ -219,6 +206,19 @@ angular.module('socialCloud.services', [])
             ref.off();
             ref.unauth();
         },
+        
+        updateStatus: function(status) {
+            ref.child("users").child(currentUser.username).update({status: status});
+        },
+        
+        updateMood: function(mood) {
+            ref.child("users").child(currentUser.username).update({mood: mood});
+        },
+        
+        updateLocation: function(location) {
+            ref.child("users").child(currentUser.username).update({location: location});
+        },
+        
         login: function(username, password, callback) { //check if correct password
             isNewUser = false;
             var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");

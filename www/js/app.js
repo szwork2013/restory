@@ -48,6 +48,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
     // Each tab has its own nav history stack:
 
     .state('tab.profile', {
+        cache: false,
         url: '/profile',
         views: {
             'tab-profile': {

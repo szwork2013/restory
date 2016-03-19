@@ -53,6 +53,10 @@ function RegisterCtrl($scope, $state, Users) {
                             if (error) {
                                 console.log("Error creating user:", error);
                             } else {
+                                $ionicLoading.show({
+                                    template: 'Logging In...',
+                                    duration: 800
+                                });
                                 $state.go('tab.chats');
                             }
                         });
