@@ -39,7 +39,6 @@ function ChatDetailCtrl($scope, $stateParams, $ionicScrollDelegate, $ionicLoadin
             $scope.messageList = $('#messageList');
             $scope.messageList.append(messageElement);
             $ionicScrollDelegate.scrollBottom();
-            //$ionicScrollDelegate.resize();
         };
         Messages.getMessage(callback, Chats.getCurrentGroupChat());        
     });

@@ -144,12 +144,8 @@ angular.module('socialCloud.services', [])
             messagesRef.child(groupName.toCamelCase()).push({name: name, text: message});
         },
         
-        isCallBackSet: function () {
-            return isCallBackSet;
-        },
-        
         getMessage: function(callback, groupName) {
-            // Gets the last 20 messages
+            // Gets the last 40 messages
             childCallBackRef = messagesRef.child(groupName.toCamelCase()).limitToLast(40).on('child_added', function (snapshot) {
                 //GET DATA
                 var data = snapshot.val();
@@ -181,7 +177,6 @@ angular.module('socialCloud.services', [])
             });
         }
     });
-
     
     return {
         
@@ -222,11 +217,19 @@ angular.module('socialCloud.services', [])
         login: function(username, password, callback) { //check if correct password
             isNewUser = false;
             var tokenGenerator = new FirebaseTokenGenerator("yse1wKDkbHKsgiNNkbTZjRs70vsHCCfXSbybMlT0");
-            var userData = {username: username, password: password, "accountType": "client"};
-            var authToken = tokenGenerator.createToken({ "uid": "device.uuid", data: userData});
+            var userData = {username: username, password: password, accountType: "client"};
+            var authToken = tokenGenerator.createToken({ uid: "device.uuid", data: userData});
 
             ref.authWithCustomToken(authToken, function(error, userData) {
                 currentUser = userData.auth.data;
+                
+                //add user listener to update profile page on app side
+                ref.child("users").child(currentUser.username).on('value', function(dataSnapshot) {
+                    var data = dataSnapshot.val();
+                    currentUser.status = data.status;
+                    currentUser.mood = data.mood;
+                    currentUser.location = data.location;
+                });
                 callback(error, userData);  
             });
         },

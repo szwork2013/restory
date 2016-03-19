@@ -3,8 +3,8 @@
         <ion-item style="border-width: 0;">
             <img ng-src="img/adam.png" style="width: 120px; height: 120px; max-width: 100%; 
             max-height: 100%; display:block; margin:auto; background-repeat: no-repeat;
-    background-position: 50%;
-    border-radius: 50%;" class="padding">
+            background-position: 50%;
+            border-radius: 50%;" class="padding">
             <h3 style="text-align: center">
               {{User.username}}
             </h3>
@@ -21,7 +21,7 @@
               </label>
               <label class="item item-input item-floating-label positive-border" style="border-left-width: 0; border-right-width: 0;">
                 <span class="input-label positive">Location</span>
-                <input type="text" placeholder="Location" ng-location="locationModel" ng-blur="updateLocation(locationModel)">
+                <input type="text" placeholder="Location" ng-model="locationModel" ng-blur="updateLocation(locationModel)">
               </label>
             
         </ion-list>
