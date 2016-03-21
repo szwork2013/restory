@@ -4,9 +4,9 @@ angular.module('socialCloud.controllers')
 .controller('RegisterCtrl', RegisterCtrl);
 
 // Inject dependencies
-RegisterCtrl.$inject = ['$scope', '$state', 'Users'];
+RegisterCtrl.$inject = ['$scope', '$state','$ionicLoading', 'Users'];
 
-function RegisterCtrl($scope, $state, Users) {
+function RegisterCtrl($scope, $state, $ionicLoading, Users) {
     
     var validateInput = function (username, password, confirmPassword) {
         var isValid = true;

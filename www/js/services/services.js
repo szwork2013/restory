@@ -13,7 +13,7 @@ angular.module('socialCloud.services', [])
         });
     };
     
-    var addUserToGroupCallBack =  function(username, groupName, callback) { //check if permission denied or already part of group, 
+    var addUserToGroupCallBack =  function(username, groupName, callback) { //check if already part of group
         //Save group id in user data
         var messageGroupName = {};
         messageGroupName[groupName] = true;
@@ -28,10 +28,10 @@ angular.module('socialCloud.services', [])
     }
 
     return {
-        getChats: function (callback) { //for now gets last 20 group chats in the system
+        getChats: function (callback) { //for now gets last 40 group chats in the system
             
             // Retrieve new posts as they are added to our database
-            childCallBackRef = groupListRef.limitToLast(20).on("child_added", function(snapshot, prevChildKey) {
+            childCallBackRef = groupListRef.limitToLast(40).on("child_added", function(snapshot, prevChildKey) {
                 var groupChats = snapshot.val();
                 callback(groupChats);
             });
