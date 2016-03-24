@@ -82,19 +82,58 @@ angular.module('socialCloud.services', [])
 .factory('Resources', function() {
      var resources = [{
         id: 0,
-        name: 'Addiction',
+        name: 'My Essence',
         numberOfResources: '14',
-        icon: 'ion-coffee'
+        icon: 'ion-coffee',
+        subheadings: [{id: 0, name: "Spiritual Self"}, {id: 1, name: "Identity", 
+                                                        subsubheadings: [{
+                                                            id: 0, name: "Cultural Identity-Race"
+                                                        }, {
+                                                            id: 1, name:"Ethnicity"
+                                                           }
+                                                                       ]}, 
+                      {id: 2, name: "Gender Identity"}]
      }, {
         id: 1,
-        name: 'Identity',
+        name: 'My Soul',
         numberOfResources: '1',
-        icon: 'ion-ios-body'
+        icon: 'ion-ios-body',
+        subheadings: [{id: 0, name: "Coping Self", subsubheadings: [{
+                                                            id: 0, name: "Leisure"
+                                                            }, {
+                                                            id: 1, name:"Stress Management"
+                                                           }, {
+                                                            id: 2, name:"Self-Worth"
+                                                           }, {
+                                                            id: 3, name:"Realistic Beliefs"
+                                                           }
+                                                                       ]}, 
+                      {id: 1, name: "Creative Self", subsubheadings: [{
+                                                            id: 0, name: "Thinking"
+                                                            }, {
+                                                            id: 1, name:"Emotions"
+                                                           }, {
+                                                            id: 2, name:"Control"
+                                                           }, {
+                                                            id: 3, name:"Work"
+                                                           }
+                                                                       ]},
+                      {id: 2, name: "Social Self", subsubheadings: [{
+                                                            id: 0, name: "Friendship"
+                                                            }, {
+                                                            id: 1, name:"Love"
+                                                           }]
+                      }]
   }, {
         id: 2,
-        name: 'Mental Health',
+        name: 'My Body',
         numberOfResources: '23',
-        icon: 'ion-medkit'
+        icon: 'ion-medkit',
+        subheadings: [{id: 0, name: "Physical Self", subsubheadings: [{
+                                                            id: 0, name: "Nutrition"
+                                                            }, {
+                                                            id: 1, name:"Exercise"
+                                                           }]}]
   }, {
         id: 3,
         name: 'Relationships',

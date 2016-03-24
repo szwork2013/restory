@@ -1,11 +1,57 @@
 <ion-view view-title="Learn">
     <ion-content>
-        <ion-list>
+        <!--<ion-list>
             <ion-item class="item item-icon-left" ng-repeat="resource in resources" href="#">
                     <i class="icon {{resource.icon}} positive"></i>
                     <h2>{{resource.name}}</h2>
-                    <p>{{resource.numberOfResources}} resource available</p> <!--resource(s)-->
+                    <p>{{resource.numberOfResources}} resource available</p>
             </ion-item>
-        </ion-list>
+        </ion-list> -->
+        
+        
+     <!--  <ion-list>
+        <div ng-repeat="resource in resources">
+          <ion-item class="item item-icon-left" ng-click="toggleGroup(resource)" ng-class="{active: isGroupShown(resource)}">
+              <i class="icon {{resource.icon}} positive"></i>
+                    <h2>{{resource.name}}</h2>
+                    <p>{{resource.numberOfResources}} resource available</p>
+          </ion-item>
+          
+            <ion-item class="item-accordion" ng-click="toggleSubGroup(subheading)" ng-repeat="subheading in resource.subheadings" ng-show="isGroupShown(resource)">
+            {{subheading.name}}
+          </ion-item>
+            <ion-item class="item-accordion" ng-repeat="subheading in resource.subheadings" ng-show="isSubGroupShown(subheading)">
+            {{subheading.name}}
+          </ion-item>
+        </div>
+      </ion-list> -->
+        
+        <ion-list>
+
+      <div ng-repeat="resource in resources">
+
+        <ion-item class="item item-icon-left" ng-click="toggleGroup(resource)" ng-class="{active: isGroupShown(resource)}">
+              <i class="icon {{resource.icon}} positive"></i>
+                    <h2>{{resource.name}}</h2>
+                    <p>{{resource.numberOfResources}} resource available</p>
+          </ion-item>
+
+        <ion-item class="item-accordion" ng-click="toggleSubGroup(subheading)" ng-repeat="subheading in resource.subheadings" ng-show="isGroupShown(resource)">
+            
+            
+            <i class="icon padding-left padding-right" style="float:right;" ng-show='subheading.subsubheadings' ng-class="isSubGroupShown(subheading) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+          <div class="item-text-center sub-item item-text-wrap">{{subheading.name}}</div>
+
+          <ion-item  class="item-accordion" ng-repeat="subsubheading in subheading.subsubheadings" ng-show="isSubGroupShown(subheading)"  ng-click="goto('subheading.name')">
+            <div class="item-text-center sub-sub-item item-text-wrap">{{subsubheading.name}}</div>
+          </ion-item>
+
+        </ion-item>
+
+      </div>
+
+    </ion-list>
+    
+    
     </ion-content>
 </ion-view>
