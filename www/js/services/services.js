@@ -80,84 +80,74 @@ angular.module('socialCloud.services', [])
     };
 })
 .factory('Resources', function() {
-     var resources = [{
-        id: 0,
-        name: 'My Essence',
-        numberOfResources: '14',
-        icon: 'ion-coffee',
-        subheadings: [{id: 0, name: "Spiritual Self"}, {id: 1, name: "Identity", 
-                                                        subsubheadings: [{
-                                                            id: 0, name: "Cultural Identity-Race"
+     var resources; /*= [{
+        "id": 0,
+        "name": "My Essence",
+        "numberOfResources": 14,
+        "icon": "ion-coffee",
+        "subheadings": [{"id": 0, "name": "Spiritual Self"}, {"id": 1, "name": "Identity", 
+                                                        "subsubheadings": [{
+                                                            "id": 0, "name": "Cultural Identity-Race"
                                                         }, {
-                                                            id: 1, name:"Ethnicity"
+                                                            "id": 1, "name":"Ethnicity"
                                                            }
                                                                        ]}, 
-                      {id: 2, name: "Gender Identity"}]
+                      {"id": 2, "name": "Gender Identity"}]
      }, {
-        id: 1,
-        name: 'My Soul',
-        numberOfResources: '1',
-        icon: 'ion-ios-body',
-        subheadings: [{id: 0, name: "Coping Self", subsubheadings: [{
-                                                            id: 0, name: "Leisure"
+        "id": 1,
+        "name": "My Soul",
+        "numberOfResources": 1,
+        "icon": "ion-ios-body",
+        "subheadings": [{"id": 0, "name": "Coping Self", "subsubheadings": [{
+                                                            "id": 0, "name": "Leisure"
                                                             }, {
-                                                            id: 1, name:"Stress Management"
+                                                            "id": 1, "name":"Stress Management"
                                                            }, {
-                                                            id: 2, name:"Self-Worth"
+                                                            "id": 2, "name":"Self-Worth"
                                                            }, {
-                                                            id: 3, name:"Realistic Beliefs"
+                                                            "id": 3, "name":"Realistic Beliefs"
                                                            }
                                                                        ]}, 
-                      {id: 1, name: "Creative Self", subsubheadings: [{
-                                                            id: 0, name: "Thinking"
+                      {"id": 1, "name": "Creative Self", "subsubheadings": [{
+                                                            "id": 0, "name": "Thinking"
                                                             }, {
-                                                            id: 1, name:"Emotions"
+                                                            "id": 1, "name":"Emotions"
                                                            }, {
-                                                            id: 2, name:"Control"
+                                                            "id": 2, "name":"Control"
                                                            }, {
-                                                            id: 3, name:"Work"
+                                                            "id": 3, "name":"Work"
                                                            }
                                                                        ]},
-                      {id: 2, name: "Social Self", subsubheadings: [{
-                                                            id: 0, name: "Friendship"
+                      {"id": 2, "name": "Social Self", "subsubheadings": [{
+                                                            "id": 0, "name": "Friendship"
                                                             }, {
-                                                            id: 1, name:"Love"
+                                                            "id": 1, "name":"Love"
                                                            }]
                       }]
   }, {
-        id: 2,
-        name: 'My Body',
-        numberOfResources: '23',
-        icon: 'ion-medkit',
-        subheadings: [{id: 0, name: "Physical Self", subsubheadings: [{
-                                                            id: 0, name: "Nutrition"
+        "id": 2,
+        "name": "My Body",
+        "numberOfResources": 23,
+        "icon": "ion-medkit",
+        "subheadings": [{"id": 0, "name": "Physical Self", "subsubheadings": [{
+                                                            "id": 0, "name": "Nutrition"
                                                             }, {
-                                                            id: 1, name:"Exercise"
+                                                            "id": 1, "name":"Exercise"
                                                            }]}]
-  }, {
-        id: 3,
-        name: 'Relationships',
-        numberOfResources: '9',
-        icon: 'ion-ios-people'
-  }, {
-        id: 4,
-        name: 'Sexuality',
-        numberOfResources: '3',
-        icon: 'ion-transgender'
-  }, {
-        id: 5,
-        name: 'Self Management',
-        numberOfResources: '8',
-        icon: 'ion-arrow-graph-up-left'
-  }];
+  */
+         
+   
+        
+   
     
     return {
-        all: function () {
-            return resources;
+        all: function (callback) {
+            var ref = new Firebase("https://restory.firebaseio.com/");
+            ref.child("learnContent").child("learnContentHierarchy").once("value", function(snapshot) {
+                callback(snapshot.val());
+            });
         },
-        remove: function (resource) {
-            resources.splice(resources.indexOf(resource), 1);
-        },
+            
         get: function (resourceId) {
             for (var i = 0; i < resources.length; i++) {
                 if (resources[i].id === parseInt(resourceId)) {

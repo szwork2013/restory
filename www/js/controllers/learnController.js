@@ -4,19 +4,18 @@ angular.module('socialCloud.controllers')
 .controller('LearnCtrl', LearnCtrl);
 
 // Inject dependencies
-LearnCtrl.$inject = ['$scope', 'Resources'];
+LearnCtrl.$inject = ['$scope','$ionicLoading', 'Resources'];
 
 // Define controller
-function LearnCtrl($scope, Resources) {
-    $scope.resources = Resources.all();
-    $scope.remove = function (resource) {
-        Resources.remove(resource);
-    };
+function LearnCtrl($scope, $ionicLoading, Resources) {
+    $ionicLoading.show({template: 'Logging Resources...'});
     
-    $scope.resources = Resources.all();
+    var getResourcesCallback = function(resources) {
+        $scope.resources = resources;
+        $ionicLoading.hide();
+    }
     
-    
-    
+    Resources.all(getResourcesCallback);
      /*
    * if given group is the selected group, deselect it
    * else, select the given group
