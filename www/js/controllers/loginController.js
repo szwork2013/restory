@@ -17,10 +17,7 @@ function LoginCtrl($scope, $state, $ionicLoading, Users) {
                     if (error) {
                         $scope.passwordError = "Error logging in:" + error;
                     } else {
-                        $ionicLoading.show({
-                                template: 'Logging In...',
-                                duration: 800
-                        });
+                        $ionicLoading.show({template: 'Logging In...'});
                         $state.go('tab.chats');
                     }
                 });

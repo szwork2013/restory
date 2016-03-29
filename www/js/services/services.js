@@ -148,13 +148,11 @@ angular.module('socialCloud.services', [])
             });
         },
             
-        get: function (resourceId) {
-            for (var i = 0; i < resources.length; i++) {
-                if (resources[i].id === parseInt(resourceId)) {
-                    return resources[i];
-                }
-            }
-            return null;
+        get: function (resourceId, callback) {
+            var ref = new Firebase("https://restory.firebaseio.com/");
+            ref.child("learnContent").child("learnContentDetailPages").child(resourceId.replace(/ /g, '')).once("value", function(snapshot) {
+                return callback(snapshot.val());
+            });
         }
     };
 })

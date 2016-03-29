@@ -87,6 +87,16 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
             }
         }
     })
+        .state('tab.learn-detail', {
+            url: '/learn/:contentpage',
+            views: {
+                'tab-learn': {
+                    templateUrl: 'templates/learn-detail.html',
+                    controller: 'LearnDetailCtrl'
+                }
+            }
+        })
+    
     
     .state('register', {
         cache: "false",
