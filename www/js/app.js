@@ -79,6 +79,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
         })
 
     .state('tab.learn', {
+        cache: false,
         url: '/learn',
         views: {
             'tab-learn': {
@@ -88,6 +89,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
         }
     })
         .state('tab.learn-detail', {
+        cache: false,
             url: '/learn/:contentpage',
             views: {
                 'tab-learn': {
