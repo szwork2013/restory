@@ -4,11 +4,14 @@ angular.module('socialCloud.controllers')
 .controller('ChatsCtrl', ChatsCtrl);
 
 // Inject dependencies
-ChatsCtrl.$inject = ['$scope', '$state', '$stateParams','$ionicLoading', '$ionicScrollDelegate', 'Chats', 'Users'];
+ChatsCtrl.$inject = ['$scope', '$state', '$stateParams','$ionicLoading', '$ionicScrollDelegate', '$ionicNavBarDelegate', 'Chats', 'Users'];
 
 // Define controller
-function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDelegate, Chats, Users) {
+function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDelegate, $ionicNavBarDelegate, Chats, Users) {
+    $ionicNavBarDelegate.showBackButton(true);
     $ionicLoading.hide();
+    cordova.plugins.Keyboard.disableScroll(true);
+    
     $scope.remove = function (chat) {
         Chats.removeGroup(chat);
     };
@@ -28,6 +31,8 @@ function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDele
         Chats.joinGroup(Users.getCurrentUser().username, groupName, goChatDetailPage);   
     }
     
+    $scope.$on('$ionicView.loaded', function() {    
+        
         var callback = function(data) {
             //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
             var groupChat = $("<a>");
