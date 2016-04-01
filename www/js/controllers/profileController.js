@@ -4,11 +4,32 @@ angular.module('socialCloud.controllers')
 .controller('ProfileCtrl', ProfileCtrl);
 
 // Inject dependencies
-ProfileCtrl.$inject = ['$scope', '$state', 'Chats', 'Users'];
+ProfileCtrl.$inject = ['$scope', '$state', '$ionicPopup', 'Chats', 'Users'];
 
 // Define controller
-function ProfileCtrl($scope, $state, Chats, Users) {
+function ProfileCtrl($scope, $state, $ionicPopup, Chats, Users) {
     $scope.User = Users.getCurrentUser();
+     // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="list"><label class="item item-input item-select"><div class="input-label">Mood</div><select><option>Alhamdulilah</option><option selected>Happy</option><option>OK</option><option>Sad</option><option>Angry</option></select></label><label class="item item-input item-select"><div class="input-label">Health</div><select><option>5 (Blessed)</option><option selected>4 (Good)</option><option>3 (Average)</option><option>2 (poor)</option><option>1 (Critical)</option></select></label></div>',
+            title: "How are you " + $scope.User.username + "?",
+            subTitle: 'Update yourself',
+            scope: $scope,
+            buttons: [
+              { text: 'Cancel' },
+              {
+                text: '<b>Save</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                  //save data
+                }
+              }
+            ]
+        }); 
+        myPopup.then(function(res) {
+            //save data
+        });
+    
     $scope.updateStatus = function (status) {
         if (status) {
            Users.updateStatus(status); 
@@ -31,6 +52,10 @@ function ProfileCtrl($scope, $state, Chats, Users) {
         } else {
             Users.updateLocation(""); 
         }
+    }
+    
+    $scope.showMoodChart = function () {
+        $state.go('tab.profile-mood-chart');
     }
     
     $scope.logout = function () {

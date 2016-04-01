@@ -9,6 +9,7 @@ ChatDetailCtrl.$inject = ['$scope', '$stateParams','$ionicScrollDelegate', '$ion
 // Define controller
 function ChatDetailCtrl($scope, $stateParams, $ionicScrollDelegate, $ionicLoading, Chats, Messages, Users) {
     $scope.chatName = $stateParams.chatName;
+    cordova.plugins.Keyboard.disableScroll(true);
     $ionicLoading.show({
             template: 'Loading messages...',
             duration: 800

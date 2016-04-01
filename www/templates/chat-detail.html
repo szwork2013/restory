@@ -3,7 +3,7 @@
       <ul id="messageList"></ul>
   </ion-content>
     
-    <ion-footer-bar class="padding">
+    <ion-footer-bar class="padding" keyboard-attach class="bar-assertive">
     <div class="item item-input" style="width: 100%">
         <label class="item-input-wrapper">
           <input type="text" id='messageInput' placeholder="Write a message..." name="messageInput" ng-model="messageInputModel" ng-keypress="checkIfEnterKeyWasPressed($event, messageInputModel)">

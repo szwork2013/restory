@@ -18,7 +18,10 @@ function LoginCtrl($scope, $state, $ionicLoading, Users) {
                         $scope.passwordError = "Error logging in:" + error;
                     } else {
                         $ionicLoading.show({template: 'Logging In...'});
-                        $state.go('tab.chats');
+                        
+                        //have logic here to see if first time user
+                        //$state.go('tab.chats');
+                        $state.go('intro');
                     }
                 });
             } else {
@@ -31,8 +34,6 @@ function LoginCtrl($scope, $state, $ionicLoading, Users) {
     $scope.goRegisterPage = function() {
         $state.go('register');
     }
-    
-    
     
     
 }

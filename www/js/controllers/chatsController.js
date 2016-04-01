@@ -28,7 +28,6 @@ function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDele
         Chats.joinGroup(Users.getCurrentUser().username, groupName, goChatDetailPage);   
     }
     
-    $scope.$on('$ionicView.loaded', function() {
         var callback = function(data) {
             //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
             var groupChat = $("<a>");

@@ -1,7 +1,7 @@
 <ion-view view-title="Profile">
     <ion-content ion-content>
         <ion-item style="border-width: 0;">
-            <img ng-src="img/adam.png" style="width: 120px; height: 120px; max-width: 100%; 
+            <img ng-src="/img/adam.png" style="width: 120px; height: 120px; max-width: 100%; 
             max-height: 100%; display:block; margin:auto; background-repeat: no-repeat;
             background-position: 50%;
             border-radius: 50%;" class="padding">
@@ -26,7 +26,12 @@
             
         </ion-list>
         
+        <button class="button button-outline button-positive" style="width: 80%; max-width: 100%; display:block; margin:auto;" ng-click="showMoodChart()">
+                Self Tracker
+        </button>
+        
         <div class ="padding" style="padding-top: 30px">
+            
             <button class="button button-outline button-positive" style="width: 80%; max-width: 100%; display:block; margin:auto;" ng-click="logout()">
                 Log Out
             </button>

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.services'])
+angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.services', 'chart.js'])
 
 .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -44,6 +44,13 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
     })
+    
+    .state('intro', {
+        cache: "false",
+        url: '/intro',
+        templateUrl: 'templates/intro.html',
+        controller: 'IntroCtrl'
+    })
 
     // Each tab has its own nav history stack:
 
@@ -57,6 +64,16 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
             }
         }
     })
+    
+    .state('tab.profile-mood-chart', {
+            url: '/profile/:username',
+            views: {
+                'tab-profile': {
+                    templateUrl: 'templates/profile-mood-chart.html',
+                    controller: 'moodChartCtrl'
+                }
+            }
+        })
 
     .state('tab.chats', {
             cache: false,
@@ -68,6 +85,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
                 }
             }
         })
+    
         .state('tab.chat-detail', {
             url: '/chats/:chatName',
             views: {

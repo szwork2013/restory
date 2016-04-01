@@ -1,0 +1,61 @@
+<ion-view view-title="Introduction" can-swipe-back="false" class="padding">
+    <ion-nav-buttons side="left">
+      <button class="button button-positive button-clear no-animation"
+              ng-click="startApp()" ng-show="!slideIndex">
+        Skip Intro
+      </button>
+      <button class="button button-positive button-clear no-animation"
+              ng-click="previous()" ng-show="slideIndex > 0">
+        Previous Slide
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right"> 
+      <button class="button button-positive button-clear no-animation"
+              ng-click="next()" ng-show="slideIndex != 2">
+        Next
+      </button>
+      <button class="button button-positive button-clear no-animation"
+              ng-click="startApp()" ng-show="slideIndex == 2">
+        Start using Restory
+      </button>
+    </ion-nav-buttons>
+    <ion-slide-box on-slide-changed="slideChanged(index)">
+      <ion-slide>
+        <h3>Welcome to Restory!</h3>
+        <div id="logo">
+          <img src="http://code.ionicframework.com/assets/img/app_icon.png">
+        </div>
+        <h4>
+          A place where you can speak freely and give us all your information >:D
+        </h4>
+        <p>
+          By going any further you have automatically agreed to our hidden terms and conditions.
+        </p>
+          
+          <h4>
+          Mental health
+          </h4>
+          <p>
+          A person’s condition with regard to their psychological and emotional well-being. "all this pressure seems to be affecting his mental health"
+          </p>
+      </ion-slide>
+      <ion-slide>
+        <h3>Using Restory</h3>
+
+        <div id="list">
+          <h5>Just three steps:</h5>
+          <ol>
+            <li>Be awesome</li>
+            <li>Stay awesome</li>
+            <li>There is no step 3</li>
+          </ol>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <h3>Any questions?</h3>
+        <p>
+          Feel free to ask one of the moderators.
+        </p>
+      </ion-slide>
+    </ion-slide-box>
+</ion-view>
