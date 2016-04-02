@@ -9,7 +9,7 @@ ChatDetailCtrl.$inject = ['$scope', '$stateParams','$ionicScrollDelegate', '$ion
 // Define controller
 function ChatDetailCtrl($scope, $stateParams, $ionicScrollDelegate, $ionicLoading, Chats, Messages, Users) {
     $scope.chatName = $stateParams.chatName;
-    //cordova.plugins.Keyboard.disableScroll(true);
+    cordova.plugins.Keyboard.disableScroll(true);
     $ionicLoading.show({
             template: 'Loading messages...',
             duration: 800
@@ -18,12 +18,14 @@ function ChatDetailCtrl($scope, $stateParams, $ionicScrollDelegate, $ionicLoadin
     $scope.submitMessage = function(message) {
         Messages.push(Users.getCurrentUser().username, message, Chats.getCurrentGroupChat());
         $scope.messageInputModel = '';
+        $ionicScrollDelegate.scrollBottom();
     }
     
     $scope.checkIfEnterKeyWasPressed = function($event, message) {
         var keyCode = $event.which || $event.keyCode;
         if (keyCode === 13) {
-           $scope.submitMessage(message); 
+            $scope.submitMessage(message); 
+            $ionicScrollDelegate.scrollBottom();
         }
     };
     

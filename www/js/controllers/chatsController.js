@@ -10,7 +10,7 @@ ChatsCtrl.$inject = ['$scope', '$state', '$stateParams','$ionicLoading', '$ionic
 function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDelegate, $ionicNavBarDelegate, Chats, Users) {
     $ionicNavBarDelegate.showBackButton(true);
     $ionicLoading.hide();
-    //cordova.plugins.Keyboard.disableScroll(true);
+    cordova.plugins.Keyboard.disableScroll(true);
     
     $scope.remove = function (chat) {
         Chats.removeGroup(chat);

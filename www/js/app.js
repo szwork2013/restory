@@ -8,11 +8,18 @@
 angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.services', 'chart.js'])
 
 .run(function ($ionicPlatform) {
+    
+    if (ionic.Platform.isIOS()){
+        setTimeout(function () {
+        navigator.splashscreen.hide();
+        }, 3000 - 1000);
+    }
+    
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-            //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
 
         }
@@ -21,6 +28,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
             StatusBar.styleDefault();
         }
     });
+    
 })
 
 .config(function ($stateProvider, $urlRouterProvider) {
