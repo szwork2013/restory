@@ -7,7 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.services', 'chart.js'])
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, $rootScope, $ionicPopup, $ionicHistory) {
+    
     
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,6 +23,37 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
             StatusBar.styleDefault();
         }
     });
+    
+    $ionicPlatform.registerBackButtonAction(function(e){
+        
+        function showConfirm() {
+            var confirmPopup = $ionicPopup.confirm({
+              title: '<strong>Exit Restory?</strong>',
+              template: 'Are you sure you want to exit Restory?'
+            });
+
+            confirmPopup.then(function(res) {
+              if (res) {
+                ionic.Platform.exitApp();
+              } else {
+                // Don't close
+              }
+            });
+        }
+        
+    if ($rootScope.backButtonPressedOnceToExit) {
+      ionic.Platform.exitApp();
+    }
+
+    else if ($ionicHistory.backView()) {
+      $ionicHistory.goBack();
+    }
+    else {
+      showConfirm();
+    }
+    e.preventDefault();
+    return false;
+  },101);
     
 })
 

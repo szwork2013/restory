@@ -4,9 +4,9 @@ angular.module('socialCloud.controllers')
 .controller('RegisterCtrl', RegisterCtrl);
 
 // Inject dependencies
-RegisterCtrl.$inject = ['$scope', '$state','$ionicLoading', 'Users'];
+RegisterCtrl.$inject = ['$scope', '$state','$ionicLoading', '$ionicHistory', 'Users'];
 
-function RegisterCtrl($scope, $state, $ionicLoading, Users) {
+function RegisterCtrl($scope, $state, $ionicLoading, $ionicHistory, Users) {
     
     var validateInput = function (username, password, confirmPassword) {
         var isValid = true;
@@ -56,6 +56,9 @@ function RegisterCtrl($scope, $state, $ionicLoading, Users) {
                                 $ionicLoading.show({
                                     template: 'Logging In...',
                                     duration: 800
+                                });
+                                $ionicHistory.nextViewOptions({
+                                    disableBack: true
                                 });
                                 $state.go('tab.chats');
                             }

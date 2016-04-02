@@ -4,15 +4,18 @@ angular.module('socialCloud.controllers')
 .controller('IntroCtrl', IntroCtrl);
 
 // Inject dependencies
-IntroCtrl.$inject = ['$scope','$state', '$ionicLoading', '$ionicSlideBoxDelegate', '$ionicNavBarDelegate'];
+IntroCtrl.$inject = ['$scope','$state', '$ionicLoading', '$ionicSlideBoxDelegate', '$ionicHistory', '$ionicNavBarDelegate'];
 
 // Define controller
-function IntroCtrl($scope, $state, $ionicLoading, $ionicSlideBoxDelegate, $ionicNavBarDelegate) {
+function IntroCtrl($scope, $state, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, $ionicNavBarDelegate) {
     $ionicNavBarDelegate.showBackButton(false);
     $ionicLoading.hide();
     
     // Called to navigate to the main app
     $scope.startApp = function() {
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
         $state.go('tab.chats');
     };
         $scope.next = function() {

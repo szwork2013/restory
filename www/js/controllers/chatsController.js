@@ -4,10 +4,10 @@ angular.module('socialCloud.controllers')
 .controller('ChatsCtrl', ChatsCtrl);
 
 // Inject dependencies
-ChatsCtrl.$inject = ['$scope', '$state', '$stateParams','$ionicLoading', '$ionicScrollDelegate', '$ionicNavBarDelegate', 'Chats', 'Users'];
+ChatsCtrl.$inject = ['$scope', '$state', '$stateParams','$ionicLoading', '$ionicScrollDelegate', '$ionicHistory', '$ionicNavBarDelegate', 'Chats', 'Users'];
 
 // Define controller
-function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDelegate, $ionicNavBarDelegate, Chats, Users) {
+function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDelegate, $ionicHistory, $ionicNavBarDelegate, Chats, Users) {
     $ionicNavBarDelegate.showBackButton(true);
     $ionicLoading.hide();
     cordova.plugins.Keyboard.disableScroll(true);

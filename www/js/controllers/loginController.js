@@ -4,9 +4,9 @@ angular.module('socialCloud.controllers')
 .controller('LoginCtrl', LoginCtrl);
 
 // Inject dependencies
-LoginCtrl.$inject = ['$scope', '$state','$ionicLoading', 'Users'];
+LoginCtrl.$inject = ['$scope', '$state','$ionicLoading', '$ionicHistory', 'Users'];
 
-function LoginCtrl($scope, $state, $ionicLoading, Users) {
+function LoginCtrl($scope, $state, $ionicLoading, $ionicHistory, Users) {
     
     $scope.login = function(username, password) {
         
@@ -18,7 +18,9 @@ function LoginCtrl($scope, $state, $ionicLoading, Users) {
                         $scope.passwordError = "Error logging in:" + error;
                     } else {
                         $ionicLoading.show({template: 'Logging In...'});
-                        
+                        $ionicHistory.nextViewOptions({
+                            disableBack: true
+                        });
                         //have logic here to see if first time user
                         //$state.go('tab.chats');
                         $state.go('intro');

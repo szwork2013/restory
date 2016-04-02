@@ -1,4 +1,4 @@
-<ion-view view-title="Introduction" can-swipe-back="false" class="padding">
+<ion-view view-title="" can-swipe-back="false" class="padding">
     <ion-nav-buttons side="left">
       <button class="button button-positive button-clear no-animation"
               ng-click="startApp()" ng-show="!slideIndex">
@@ -20,6 +20,7 @@
       </button>
     </ion-nav-buttons>
     <ion-slide-box on-slide-changed="slideChanged(index)">
+        
       <ion-slide>
         <h3>Welcome to Restory!</h3>
         <div id="logo">
@@ -39,23 +40,60 @@
           A person’s condition with regard to their psychological and emotional well-being. "all this pressure seems to be affecting his mental health"
           </p>
       </ion-slide>
+        
       <ion-slide>
         <h3>Using Restory</h3>
 
         <div id="list">
-          <h5>Just three steps:</h5>
+          <h5>Key features:</h5>
           <ol>
-            <li>Be awesome</li>
-            <li>Stay awesome</li>
-            <li>There is no step 3</li>
+            <li>Chats</li>
+            <li>Resources</li>
+            <li>Self Tracker</li>
           </ol>
         </div>
+          
+          <div>
+              <h3>Need help?</h3>
+              <p>Feel free to ask one of the moderators.</p>
+          </div>
       </ion-slide>
+        
       <ion-slide>
-        <h3>Any questions?</h3>
-        <p>
-          Feel free to ask one of the moderators.
-        </p>
+          
+        <h3>Questionnaire</h3>
+        <label class="item item-input item-select">
+            <div class="input-label">
+              Do you like Restory?
+            </div>
+            <select>
+              <option>Yes</option>
+              <option>Not sure</option>
+              <option>No</option>
+            </select>
+        </label>
+          
+          <label class="item item-input item-select">
+            <div class="input-label">
+              What Gender are you?
+            </div>
+            <select>
+              <option>Male</option>
+              <option>Not sure</option>
+              <option>Female</option>
+            </select>
+        </label>
+          
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Can you bench more than 100kgs?
+            </div>
+            <select>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+        </label>
+          
       </ion-slide>
     </ion-slide-box>
 </ion-view>

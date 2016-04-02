@@ -4,31 +4,12 @@ angular.module('socialCloud.controllers')
 .controller('ProfileCtrl', ProfileCtrl);
 
 // Inject dependencies
-ProfileCtrl.$inject = ['$scope', '$state', '$ionicPopup', 'Chats', 'Users'];
+ProfileCtrl.$inject = ['$scope', '$state', '$ionicPopup', '$ionicHistory', 'Chats', 'Users'];
 
 // Define controller
-function ProfileCtrl($scope, $state, $ionicPopup, Chats, Users) {
+function ProfileCtrl($scope, $state, $ionicPopup, $ionicHistory, Chats, Users) {
     $scope.User = Users.getCurrentUser();
-     // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-            template: '<div class="list"><label class="item item-input item-select"><div class="input-label">Mood</div><select><option>Alhamdulilah</option><option selected>Happy</option><option>OK</option><option>Sad</option><option>Angry</option></select></label><label class="item item-input item-select"><div class="input-label">Health</div><select><option>5 (Blessed)</option><option selected>4 (Good)</option><option>3 (Average)</option><option>2 (poor)</option><option>1 (Critical)</option></select></label></div>',
-            title: "How are you " + $scope.User.username + "?",
-            subTitle: 'Update yourself',
-            scope: $scope,
-            buttons: [
-              { text: 'Cancel' },
-              {
-                text: '<b>Save</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                  //save data
-                }
-              }
-            ]
-        }); 
-        myPopup.then(function(res) {
-            //save data
-        });
+     
     
     $scope.updateStatus = function (status) {
         if (status) {
@@ -58,8 +39,34 @@ function ProfileCtrl($scope, $state, $ionicPopup, Chats, Users) {
         $state.go('tab.profile-mood-chart');
     }
     
+    $scope.updateSelf = function () {
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="list"><label class="item item-input item-select"><div class="input-label">Mood</div><select><option>5 (Alhamdulilah)</option><option selected>4 (Happy)</option><option>3 (OK)</option><option>2 (Sad)</option><option>1 (Angry)</option></select></label><label class="item item-input item-select"><div class="input-label">Health</div><select><option>5 (Blessed)</option><option selected>4 (Good)</option><option>3 (Average)</option><option>2 (poor)</option><option>1 (Critical)</option></select></label></div>',
+            title: "How are you " + $scope.User.username + "?",
+            subTitle: 'Update yourself',
+            scope: $scope,
+            buttons: [
+              { text: 'Cancel' },
+              {
+                text: '<b>Save</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                  //save data
+                }
+              }
+            ]
+        }); 
+        myPopup.then(function(res) {
+            //save data
+        });
+    }
+    
     $scope.logout = function () {
         Users.logOut();
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
         $state.go('login');
     }
     
