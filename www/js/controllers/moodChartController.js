@@ -2,13 +2,13 @@ angular.module('socialCloud.controllers')
 
 
 // Create controller
-.controller('moodChartCtrl', moodChartCtrl);
+.controller('MoodChartCtrl', MoodChartCtrl);
 
 // Inject dependencies
 moodChartCtrl.$inject = ['$scope'];
 
 // Define controller
-function moodChartCtrl($scope) {
+function MoodChartCtrl($scope) {
     $scope.graph = {};
 
     $scope.graph.data = [
