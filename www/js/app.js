@@ -9,12 +9,6 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
 
 .run(function ($ionicPlatform) {
     
-    if (ionic.Platform.isIOS()){
-        setTimeout(function () {
-        navigator.splashscreen.hide();
-        }, 3000 - 1000);
-    }
-    
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
