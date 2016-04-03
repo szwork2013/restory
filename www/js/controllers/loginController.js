@@ -21,9 +21,13 @@ function LoginCtrl($scope, $state, $ionicLoading, $ionicHistory, Users) {
                         $ionicHistory.nextViewOptions({
                             disableBack: true
                         });
-                        //have logic here to see if first time user
-                        //$state.go('tab.chats');
-                        $state.go('intro');
+                        
+                        if(true) { //check if user accepted T&Cs
+                            $state.go('tab.chats');
+                        } else {
+                            $state.go('terms-and-conditions');
+                        }
+                        
                     }
                 });
             } else {

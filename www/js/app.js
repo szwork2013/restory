@@ -24,6 +24,12 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
         }
     });
     
+    if (ionic.Platform.isIOS()){
+       setTimeout(function () {
+          navigator.splashscreen.hide();
+       }, 3000 - 1000);
+    }
+    
     $ionicPlatform.registerBackButtonAction(function(e){
         
         function showConfirm() {
@@ -157,6 +163,13 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
         url: '/register',
         templateUrl: 'templates/register.html',
         controller: 'RegisterCtrl'
+    })
+    
+    .state('terms-and-conditions', {
+        cache: "false",
+        url: '/termsAndConditions',
+        templateUrl: 'templates/terms-and-condtions.html',
+        controller: 'TermsConditionsCtrl'
     });
 
     // if none of the above states are matched, use this as the fallback

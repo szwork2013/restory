@@ -60,7 +60,7 @@ function RegisterCtrl($scope, $state, $ionicLoading, $ionicHistory, Users) {
                                 $ionicHistory.nextViewOptions({
                                     disableBack: true
                                 });
-                                $state.go('tab.chats');
+                                $state.go('terms-and-conditions');
                             }
                         });
                     } else {
