@@ -19,81 +19,61 @@
         Go Restory
       </button>
     </ion-nav-buttons>
-    <ion-slide-box on-slide-changed="slideChanged(index)">
-        
-      <ion-slide>
-        <h3>Welcome to Restory!</h3>
-        <div id="logo">
-          <img src="http://code.ionicframework.com/assets/img/app_icon.png">
-        </div>
-        <h4>
-          A place where you can speak freely and give us all your information >:D
-        </h4>
-        <p>
-          By going any further you have automatically agreed to our hidden terms and conditions.
-        </p>
-          
-          <h4>
-          Mental health
-          </h4>
-          <p>
-          A person’s condition with regard to their psychological and emotional well-being. "all this pressure seems to be affecting his mental health"
-          </p>
-      </ion-slide>
-        
-      <ion-slide>
-        <h3>Using Restory</h3>
+    
+    
+    
+        <ion-slide-box on-slide-changed="slideChanged(index)">
 
-        <div id="list">
-          <h5>Key features:</h5>
-          <ol>
-            <li>Chats</li>
-            <li>Resources</li>
-            <li>Self Tracker</li>
-          </ol>
-        </div>
-          
-          <div>
-              <h3>Need help?</h3>
-              <p>Feel free to ask one of the moderators.</p>
-          </div>
-      </ion-slide>
-        
-      <ion-slide>
-          
-        <h3>Questionnaire</h3>
-        <label class="item item-input item-select">
-            <div class="input-label">
-              Do you like Restory?
+          <ion-slide>
+              <ion-content scrollable="true">
+            <h3>Welcome to Restory!</h3>
+            <div id="logo">
+              <img src="http://code.ionicframework.com/assets/img/app_icon.png">
             </div>
-            <select>
-              <option>Yes</option>
-              <option selected>Not sure</option>
-              <option>No</option>
-            </select>
-        </label>
-          
-          <label class="item item-input item-select">
-            <div class="input-label">
-              What Gender are you?
-            </div>
-            <select>
-              <option>Male</option>
-              <option selected>Not sure</option>
-              <option>Female</option>
-            </select>
-        </label>
-          
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Can you bench more than 100kgs?
-            </div>
-            <select>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-        </label>
-          
-      </ion-slide>
-    </ion-slide-box>
+            <h4>
+              A place where you can speak freely and give us all your information >:D
+            </h4>
+            <p>
+              By going any further you have automatically agreed to our hidden terms and conditions.
+            </p>
+
+              <h4>
+              Mental health
+              </h4>
+              <p>
+              A person’s condition with regard to their psychological and emotional well-being. "all this pressure seems to be affecting his mental health"
+              </p>
+                </ion-content>
+          </ion-slide>
+
+          <ion-slide>
+              <ion-content scrollable="true">
+                <h3>Using Restory</h3>
+
+                <div id="list">
+                  <h5>Key features:</h5>
+                  <ol>
+                    <li>Chats</li>
+                    <li>Resources</li>
+                    <li>Self Tracker</li>
+                  </ol>
+                </div>
+
+                  <div>
+                      <h3>Need help?</h3>
+                      <p>Feel free to ask one of the moderators.</p>
+                  </div>
+              </ion-content>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-content scrollable="true" style="height:80%;">
+            <h3>Questionnaire</h3>
+                <h5>Please select on a scale of agreement 1 (low) - 5 (high)</h5>
+              <div id="questions">
+              </div>
+                </ion-content>
+          </ion-slide>
+        </ion-slide-box>
+    
 </ion-view>

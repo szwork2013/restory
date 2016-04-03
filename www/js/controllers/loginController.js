@@ -4,9 +4,34 @@ angular.module('socialCloud.controllers')
 .controller('LoginCtrl', LoginCtrl);
 
 // Inject dependencies
-LoginCtrl.$inject = ['$scope', '$state','$ionicLoading', '$ionicHistory', 'Users'];
+LoginCtrl.$inject = ['$scope', '$state','$ionicLoading', '$ionicHistory', '$ionicPopup', 'Users'];
 
-function LoginCtrl($scope, $state, $ionicLoading, $ionicHistory, Users) {
+function LoginCtrl($scope, $state, $ionicLoading, $ionicHistory, $ionicPopup, Users) {
+    
+    if (true) {//if new user
+    
+        var myPopup = $ionicPopup.show({
+            templateUrl: 'templates/welcome-pop-up.html',
+            title: "How are you?",
+            subTitle: 'Update yourself',
+            scope: $scope,
+            buttons: [
+              { text: 'Login',
+                type: 'button-positive'
+              },
+              {
+                text: '<b>Sign up</b>',
+                type: 'button-balanced',
+                onTap: function(e) {
+                  $state.go('register');
+                }
+              }
+            ]
+        }); 
+        myPopup.then(function(res) {
+            
+        });
+    }
     
     $scope.login = function(username, password) {
         

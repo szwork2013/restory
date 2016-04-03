@@ -5,6 +5,11 @@
     background-size: 100%;
 }
 
+.blueGradient {
+    background-image: url('../img/blueGradient.png');
+    background-size: 100%;
+}
+
 .opacity {
     /*    background-color: rgba(0, 0, 0, 0.5);*/
     opacity: 0.5;
@@ -74,4 +79,19 @@
 
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
+}
+
+.popup {
+  width: 90% !important;
+  height: 90%;
+  max-height: 90% !important;
+}
+.popup-body {
+    top: 40px;
+    padding: 10px;
+    overflow: auto;
+    height:100%; 
+}
+.limit-scroll{
+  height: 83% !important;
 }
