@@ -28,13 +28,22 @@ angular.module('socialCloud.services', [])
     }
 
     return {
-        getChats: function (callback) { //for now gets last 40 group chats in the system
+        getChats: function (callback) { //for now gets last 20 group chats in the system
             
-            // Retrieve new posts as they are added to our database
-            childCallBackRef = groupListRef.limitToLast(40).on("child_added", function(snapshot, prevChildKey) {
+            
+            //check if any chat any chat groups available
+            groupListRef.once("value", function(snapshot) {
+                if (!snapshot.exists()) {
+                    callback(null);
+                }
+            });
+            
+            //register to chat groups
+            childCallBackRef = groupListRef.limitToLast(20).on("child_added", function(snapshot, prevChildKey) {
                 var groupChats = snapshot.val();
                 callback(groupChats);
             });
+            
         },
         
         unregisterChatsEvent: function() {

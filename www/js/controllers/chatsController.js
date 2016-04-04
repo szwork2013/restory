@@ -8,9 +8,9 @@ ChatsCtrl.$inject = ['$scope', '$state', '$stateParams','$ionicLoading', '$ionic
 
 // Define controller
 function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDelegate, $ionicHistory, $ionicNavBarDelegate, Chats, Users) {
-    $ionicNavBarDelegate.showBackButton(true);
+    $ionicNavBarDelegate.showBackButton(false);
     $ionicLoading.hide();
-    cordova.plugins.Keyboard.disableScroll(true);
+    //cordova.plugins.Keyboard.disableScroll(true);
     
     $scope.remove = function (chat) {
         Chats.removeGroup(chat);
@@ -34,18 +34,20 @@ function ChatsCtrl($scope, $state, $stateParams, $ionicLoading, $ionicScrollDele
     $scope.$on('$ionicView.loaded', function() {    
         
         var callback = function(data) {
-            //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-            var groupChat = $("<a>");
-            groupChat.text(data.name);
-            groupChat.click(function() {
-                $scope.joinGroup($( this ).text());
-            });
-            groupChat.addClass("item");
-            //ADD MESSAGE
-            $scope.groupChatList = $('#groupChatList');
-            $scope.groupChatList.append(groupChat);
-            $ionicScrollDelegate.resize();
             
+            if (data) {
+                //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+                var groupChat = $("<a>");
+                groupChat.text(data.name);
+                groupChat.click(function() {
+                    $scope.joinGroup($( this ).text());
+                });
+                groupChat.addClass("item");
+                //ADD MESSAGE
+                $scope.groupChatList = $('#groupChatList');
+                $scope.groupChatList.append(groupChat);
+                $ionicScrollDelegate.resize();
+            }
             $ionicLoading.hide(); //will be called too many times. not good.
         };
         $ionicLoading.show({template: 'Loading chats...'});
