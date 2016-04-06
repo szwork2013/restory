@@ -1,28 +1,68 @@
-/* Empty. Add your own CSS if you like */
-
-.clouds {
-    background-image: url('../img/clouds.jpg');
-    background-size: 100%;
-}
-
-.blueGradient {
-    background-image: url('../img/blueGradient.png');
-    background-size: 100%;
-}
-
 .opacity {
     /*    background-color: rgba(0, 0, 0, 0.5);*/
     opacity: 0.5;
 }
 
+.primary {
+    color: #FFFFFF;
+    background-color: #4DBC96;
+}
+
+.secondary {
+    
+    
+}
+
+
+.neutral {
+    color: #D8D8D8;
+}
+
+.grey-botom-bar {
+    background-color: #F9F9F9;
+}
+
 .login-container {
-    max-width: 80%;
+    width: 70%; 
+    max-width: 70%; 
+    margin:auto;
 }
 
 .login-logo {
-    background-image: url('../img/logo.png');
     background-size: '100%';
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-top: 30%; 
+    padding-bottom: 30%;
 }
+
+.placeholder-icon {
+    padding: 0.15em 0 0.5em 1.5em;
+    margin-bottom: 0.2em;
+    text-indent: 0.4em;
+    font-weight: bold;
+    list-style: none;
+}
+
+.item-floating-label {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 0;
+}
+
+.user-credentials-icon {
+    width:10%; position: absolute;
+    bottom: 10%; display:inline; display: block
+}
+
+.big-text {
+    font-size: 120%;
+}
+.small-text {
+    font-size: 90%;
+}
+
 
 .center {
     width: 80%;

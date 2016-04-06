@@ -1,29 +1,38 @@
 <ion-view view-title="Login" hide-nav-bar="true">
-    <ion-content class="clouds">
-        <div class="center-horizontal" style="padding-top: 40px; width: 80%; max-width: 80%; display:block; margin:auto;">
-            <img src="img/Logo.png" style="no-repeat; width:100%; height:120px">
-            <h2 style="text-align: right; color: white">Anonymous peer support.</h2>
-            <h3 style="text-align: left; color: white">We're here for you.</h3>
+    <ion-content>
+        <div class="center-horizontal login-container">
+           <img src="img/Logo.png" class="center-horizontal login-logo">
 
-            <ion-list class="list list-inset login-container">
-                <label class="item item-input item-floating-label" style="border-width: 0;">
-                <span class="input-label" style="color: white">Username</span>
-                <input type="text" name="username" id="username" ng-model="usernameModel" placeholder="Username">
-              </label>
-                <HR/>
-                <span class="inline-error" ng-show="usernameError"> {{usernameError}}</span>
-              <label class="item item-input item-floating-label" style="border-width: 0;">
-                <span class="input-label" style="color: white">Password</span>
-                <input type="password" name="password" id="password" ng-model="passwordModel" placeholder="Password">
-              </label>
-                <HR/>
+            <ion-list class="list list-inset">
+                
+                <div style="position: relative;">
+                    <img src="img/profileIcon.png" class="user-credentials-icon"/>
+                    <label class="item item-input item-floating-label neutral" style="margin-left: 12%;">
+                      <span class="input-label neutral">Username</span>
+                      <input type="text" ng-model="usernameModel" placeholder="Username">
+                    </label>
+                </div>
+                    <span class="inline-error" ng-show="usernameError"> {{usernameError}}</span>
+                
+                <div style="position: relative;">
+                    <img src="img/securityIcon.png" class="user-credentials-icon"/>
+                    <label class="item item-input item-floating-label neutral" style="margin-left: 12%;">
+                      <span class="input-label neutral">Password</span>
+                      <input type="text" ng-model="passwordModel" placeholder="Password">
+                    </label>
+                </div>
                 <span class="inline-error" ng-show="passwordError"> {{passwordError}}</span>
-                <button class="button button-block" ng-click="login(usernameModel,passwordModel)" style="opacity: 0.7; border: positive;">Log In</button>
+                
+                
             </ion-list>
+            <button class="button button-block primary" ng-click="login(usernameModel,passwordModel)">Log In</button>
+            <button class="button button-clear button-full neutral small-text">
+              Forgot your password?
+            </button>
         </div>
     </ion-content>
     
-    <div class="bar bar-footer bar-calm" scrollable="false" ng-click="goRegisterPage()">
-        <div class="title">Sign Up</div>
+    <div class="bar bar-footer grey-botom-bar" scrollable="false" ng-click="goRegisterPage()">
+        <div class="title neutral">Dont have an account? <b>Register now!</b></div>
     </div>
 </ion-view>

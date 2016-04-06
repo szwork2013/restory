@@ -25,9 +25,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
     });
     
     if (ionic.Platform.isIOS()){
-       setTimeout(function () {
-          navigator.splashscreen.hide();
-       }, 3000 - 1000);
+       navigator.splashscreen.hide();
     }
     
     $ionicPlatform.registerBackButtonAction(function(e){
