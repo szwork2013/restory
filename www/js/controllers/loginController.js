@@ -8,7 +8,7 @@ LoginCtrl.$inject = ['$scope', '$state','$ionicLoading', '$ionicHistory', '$ioni
 
 function LoginCtrl($scope, $state, $ionicLoading, $ionicHistory, $ionicPopup, Users) {
     
-    if (true) {//if new user
+    if (false) {//if new user
     
         var myPopup = $ionicPopup.show({
             templateUrl: 'templates/welcome-pop-up.html',
