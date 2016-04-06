@@ -24,9 +24,7 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
         }
     });
     
-    if (ionic.Platform.isIOS()){
-       navigator.splashscreen.hide();
-    }
+    navigator.splashscreen.hide();
     
     $ionicPlatform.registerBackButtonAction(function(e){
         
