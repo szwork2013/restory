@@ -77,14 +77,14 @@ angular.module('socialCloud', ['ionic', 'socialCloud.controllers', 'socialCloud.
     })
 
     .state('login', {
-        cache: "false",
+        cache: false,
         url: '/login',
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
     })
     
     .state('intro', {
-        cache: "false",
+        cache: false,
         url: '/intro',
         templateUrl: 'templates/intro.html',
         controller: 'IntroCtrl'

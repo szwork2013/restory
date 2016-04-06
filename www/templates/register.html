@@ -1,28 +1,33 @@
-<ion-view view-title="Register">
-    <ion-content class="clouds">
-        <div class="center-horizontal" style="padding-top: 40px; width: 80%; max-width: 80%; display:block; margin:auto;">
-            
-            <ion-list>
-                <label class="item item-input item-floating-label" style="border-width: 0;">
-                <span class="input-label" style="color: white">Username</span>
-                <input type="text" ng-model="username" placeholder="Username">
+<ion-view view-title="Register" hide-nav-bar="true">
+    <ion-content>
+        <div class="center-horizontal login-container">
+           <img src="img/Logo.png" class="center-horizontal login-logo"/>
+            <ion-list class="list list-inset">
+                
+                <label class="item item-input item-floating-label neutral">
+                    <span class="input-label neutral">Username</span>
+                    <input type="text" ng-model="username" placeholder="Username">
                 </label>
-                <HR/>
                 <span class="inline-error" ng-show="usernameError">{{usernameError}}</span>
-              <label class="item item-input item-floating-label" style="border-width: 0;">
-                <span class="input-label" style="color: white">Password</span>
-                <input type="password" ng-model="password" placeholder="Password">
-              </label>
-                <HR/>
+                
+                <label class="item item-input item-floating-label neutral">
+                    <span class="input-label neutral">Password</span>
+                    <input type="password" ng-model="password" placeholder="Password">
+                </label>
                 <span class="inline-error" ng-show="passwordError">{{passwordError}}</span>
-                <label class="item item-input item-floating-label" style="border-width: 0;">
-                <span class="input-label" style="color: white">Confirm password</span>
-                <input type="password" ng-model="confirmPassword" placeholder="Confirm password">
-            </label>
-                <HR/>
+                
+                <label class="item item-input item-floating-label neutral">
+                    <span class="input-label neutral">Confirm password</span>
+                    <input type="password" ng-model="confirmPassword" placeholder="Confirm password">
+                </label>
                 <span class="inline-error" ng-show="confirmPasswordError"> {{confirmPasswordError}}</span>
-                <button class="button button-block" ng-click="createUser(username,password, confirmPassword)" style="opacity: 0.7; border: positive;">Register</button>
             </ion-list>
+            
+            <button class="button button-block primary" ng-click="createUser(username,password, confirmPassword)">Register</button>
         </div>
     </ion-content>
+    
+    <div class="bar bar-footer grey-botom-bar" scrollable="false" ng-click="goToLoginPage()">
+        <div class="title neutral">Already have an account? <b>Log In.</b></div>
+    </div>
 </ion-view>

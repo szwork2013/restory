@@ -71,4 +71,8 @@ function RegisterCtrl($scope, $state, $ionicLoading, $ionicHistory, Users) {
             }
         };
     
+    $scope.goToLoginPage = function () {
+        $state.go('login');
+    }
+    
 }
